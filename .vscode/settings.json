@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SinEtiquetas.sln"
+    "dotnet.defaultSolution": "CulturaDeInclusi-n-UDEJAM-2.sln"
 }
