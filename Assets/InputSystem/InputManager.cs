@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class InputManager : MonoBehaviour
 {
-    PlayerInputs playerinputs = new PlayerInputs();
+    PlayerInputs playerinputs;
 
     public Vector2 MovementDirection {get; private set;}
     private void Awake() {
+        playerinputs = new PlayerInputs();
         playerinputs.Movement.Walk.started += OnMovement;
         playerinputs.Movement.Walk.performed += OnMovement;
         playerinputs.Movement.Walk.canceled += OnMovement;
@@ -19,9 +21,9 @@ public class InputManager : MonoBehaviour
     }
 
     private void OnEnable() {
-        playerinputs.Enable();
+        playerinputs.Movement.Enable();
     }
     private void OnDisable() {
-        playerinputs.Disable();
+        playerinputs.Movement.Disable();
     }
 }
