@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    PlayerInputs playerinputs = new PlayerInputs();
+    PlayerInputs playerinputs;
 
     public Vector2 MovementDirection {get; private set;}
     private void Awake() {
+        playerinputs = new PlayerInputs();
         playerinputs.Movement.Walk.started += OnMovement;
         playerinputs.Movement.Walk.performed += OnMovement;
         playerinputs.Movement.Walk.canceled += OnMovement;
