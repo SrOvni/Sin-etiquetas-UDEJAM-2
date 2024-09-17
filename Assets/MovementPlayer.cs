@@ -11,7 +11,8 @@ public class MovementPlayer : MonoBehaviour
 
     private InputManager _inputs;         
     private Vector2 currentVelocity;      
-    private Rigidbody2D rb;               
+    private Rigidbody2D rb;
+    private Vector2 targetVelocity;
 
     [Header("Animaciones")]
     public Animator animator;             
@@ -26,14 +27,20 @@ public class MovementPlayer : MonoBehaviour
     {
         if (_inputs.MovementDirection.magnitude >= 0.1f )
         {
-            Vector2 targetVelocity = _inputs.MovementDirection * moveSpeed;
-            rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, smoothTime);
+            targetVelocity = _inputs.MovementDirection * moveSpeed;
+            rb.velocity = targetVelocity;
             //animator.SetBool("isMoving", true);
             SetAnimationDirection(_inputs.MovementDirection); 
         }
         else
         {
-            //animator.SetBool("isMoving", false);
+            rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref currentVelocity, smoothTime);
+
+            if(rb.velocity == Vector2.zero)
+            {
+                //animator.SetBool("isMoving", false);
+                Debug.Log("Idle");
+            }
         }
     }
 
