@@ -1,11 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum SignType
 {
-    Hola
+    Hola,
+    Como,
+    Estas,
+    Hay,
+    Una,
+    Fiesta,
+    Más,
+    Tarde,
+    Te,
+    Gustaría,
+    Venir
 }
-public class SignTypeScriptableObject : ScriptableObject
-{
+[CreateAssetMenu(fileName = "SignTypeScriptableObject", menuName = "SignTypeScriptableObject", order = 0)]
+public class SignTypeScriptableObject : ScriptableObject {
+    [Serializable]
+    public struct SignTypeList
+    {
+        public List<SignType> newList;
+    }
+    public List<SignTypeList> Conversation = new List<SignTypeList>(); 
     
 }
