@@ -28,7 +28,6 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] private bool _gameIsStarted = false;
 
-    public bool _temporalActivator = false;
 
     private void Start()
     {
@@ -37,11 +36,6 @@ public class WheelchairGame : MonoBehaviour
     }
     void Update()
     {
-        if(_temporalActivator == true && _gameIsStarted == false)
-        {
-            StartWheelChairGame();
-        }
-
         if (_gameIsStarted)
         {
             _slider.value = _currentValue;
