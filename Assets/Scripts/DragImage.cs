@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragImage : MonoBehaviour
+public class DragImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-    public Transform correctDropZone;  // La zona de drop correcta para esta imagen
+    public Transform correctDropZone; 
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        originalPosition = rectTransform.anchoredPosition;  // Guardamos la posición original de la imagen
+        originalPosition = rectTransform.anchoredPosition;  
     }
 
-    // Llamado cuando se comienza a arrastrar la imagen
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 0.6f;  
