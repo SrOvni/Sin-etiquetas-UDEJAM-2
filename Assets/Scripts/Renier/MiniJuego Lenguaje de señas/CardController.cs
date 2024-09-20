@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class CardController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerUpHandler
 {
+    [SerializeField] SignType signType;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 initialPositon;

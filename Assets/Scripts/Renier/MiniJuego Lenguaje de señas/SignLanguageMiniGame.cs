@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class SignLanguageMiniGame : MonoBehaviour
 {
+    [SerializeField] List<SignType> RondaUno;  
     public List<Transform> positions;
     public List<bool> availablePositions;
     AvailableSpot availableSpot;
