@@ -8,6 +8,7 @@ public class NPCDialogues : MonoBehaviour, INPC
 {
     InputManager _inputs;
     int index = 0;
+    int decisionIndex = 0;
     [SerializeField] NPCScriptableObject npcDialogues;
     [SerializeField] private Image spaceBarImage;
     [SerializeField] private TextMeshProUGUI dialogueBoxText;
@@ -36,6 +37,12 @@ public class NPCDialogues : MonoBehaviour, INPC
     bool animationFinished = false;
     [SerializeField] UnityEvent OnDialogueStart;
     [SerializeField] UnityEvent OnDialgoueEnd;
+    public bool playerTakesDesicion {get;set;}
+    public bool missionWasRejected {get;set;}
+    [SerializeField] Button takeMissionButton;
+    [SerializeField] TextMeshProUGUI takeMissionText;
+    [SerializeField] Button rejectMissionButton;
+    [SerializeField] TextMeshProUGUI rejectMissionText;
     
 
 
@@ -57,6 +64,8 @@ public class NPCDialogues : MonoBehaviour, INPC
     
     public void PlayDialogue()
     {
+        missionWasRejected = false;
+        playerTakesDesicion = false;
         spaceBarImage.gameObject?.SetActive(false);
         dialogueBoxCanvas.gameObject?.SetActive(true);
         npcImage.gameObject.SetActive(true);
@@ -66,12 +75,32 @@ public class NPCDialogues : MonoBehaviour, INPC
     {
         foreach(string part in npcDialogues.dialogues)
         {
+            string line = part;
             animate = true;
             animationFinished = false;
+            if(missionWasRejected)
+            {
+                index = npcDialogues.dialogueOrder.Length - 1;
+                line = npcDialogues.npcsRejectionLine;
+            }
+            if(npcDialogues.dialogueOrder[index] == WhoIsTalking.Prota)
+            {
+                dialogueBoxText.text = string.Empty;
+                if(npcDialogues.isPlayerDecision[decisionIndex])
+                {
+                    TakeDecision();
+                    yield return new WaitUntil(()=> playerTakesDesicion);
+                    HideDecisionButton();
+                }
+                if (missionWasRejected)
+                {
+                    line = npcDialogues.protaRejectionLine;
+                }
+            }
             yield return new WaitUntil(()=>animationFinished);
             
             dialogueBoxText.text = string.Empty;
-            foreach(char letter in part)
+            foreach(char letter in line)
             {
                 dialogueBoxText.text += letter;
                 yield return new WaitForSeconds(textSpeed);
@@ -122,15 +151,27 @@ public class NPCDialogues : MonoBehaviour, INPC
         }
     }
     void AnimationFinished()
-        {
-            animationFinished = true;
-            animate = false;
-            Debug.Log("Animation finished");
-        }
+      {
+        animationFinished = true;
+        animate = false;
+        Debug.Log("Animation finished");
+    }
     void EndDialogueAnimation()
-        {
-            OnDialgoueEnd?.Invoke();
-            dialogueBoxPosition.DOMove(initialDialogueBoxPosition.position, 1f).onComplete = AnimationFinished;
-            npcImage.DOMoveX(npcInitialImagePosition.position.x, 1f);
-        }
+    {
+        OnDialgoueEnd?.Invoke();
+        dialogueBoxPosition.DOMove(initialDialogueBoxPosition.position, 1f).onComplete = AnimationFinished;
+        npcImage.DOMoveX(npcInitialImagePosition.position.x, 1f);
+    }
+    void TakeDecision()
+    {
+        takeMissionText.text = npcDialogues.playerDecisions[decisionIndex].desicion1;
+        rejectMissionText.text = npcDialogues.playerDecisions[decisionIndex].desicion2;
+        takeMissionButton.gameObject.SetActive(true);
+        rejectMissionButton.gameObject.SetActive(true);
+    }
+    void HideDecisionButton()
+    {
+        takeMissionButton.gameObject.SetActive(false);
+        rejectMissionButton.gameObject.SetActive(false);
+    }
 }

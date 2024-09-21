@@ -13,8 +13,10 @@ public enum WhoIsTalking
 public class NPCScriptableObject : ScriptableObject 
 {
     public string[] dialogues = new string[] {"No hay dialogo"};
-    public string exitDialogue;
+    public string protaRejectionLine = "No puedo ahora, lo siento";
+    public string npcsRejectionLine = "Espero que me puedas ayudar";
     public WhoIsTalking[] dialogueOrder;
+    public bool[] isPlayerDecision;
     [Serializable] public struct PlayerDecisions
     {
         public string desicion1;
