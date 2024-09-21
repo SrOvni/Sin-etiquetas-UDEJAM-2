@@ -7,7 +7,8 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     public bool start;
     public float time = 30;
-    float currentTime;
+    [SerializeField] float currentTime;
+    public float CurrentTime{get { return currentTime;}set { currentTime = value; } }
     private void Start() {
         text.text = string.Empty;
         currentTime = time;

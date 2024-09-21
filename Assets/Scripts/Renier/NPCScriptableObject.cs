@@ -15,6 +15,12 @@ public class NPCScriptableObject : ScriptableObject
     public string[] dialogues = new string[] {"No hay dialogo"};
     public string exitDialogue;
     public WhoIsTalking[] dialogueOrder;
+    [Serializable] public struct PlayerDecisions
+    {
+        public string desicion1;
+        public string desicion2;
+    }
+    public List<PlayerDecisions> playerDecisions;
 
 }
 

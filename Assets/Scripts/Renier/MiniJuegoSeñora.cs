@@ -19,6 +19,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] private float timeToWin = 10;
     [SerializeField] private GameObject winnedGameText;
     [SerializeField] private GameObject losedgameText;
+    [SerializeField] private GameObject miniGameCanvas;
 
     [SerializeField] private bool win = false;
     int currentClickCount = 1;

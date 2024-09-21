@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: "Se\xF1ora"
   m_EditorClassIdentifier: 
   dialogues:
-  - Tengo que entregar este trabajo muy pronto
-  - Puede ayudar tener este archivo en un PDF
-  exitDialogue: "\xBFVolveras pronto?"
+  - Linea 1
+  - Linea 2
+  - Linea 3
+  - Linea 4
+  - Linea 5
+  exitDialogue: Adios
+  dialogueOrder: 0100000001000000010000000000000001000000

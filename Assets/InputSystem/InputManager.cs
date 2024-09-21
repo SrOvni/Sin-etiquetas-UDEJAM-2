@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,10 +34,25 @@ public class InputManager : MonoBehaviour
         Debug.Log("Is Escpae key being pressed: " + IsEscapeKeyPressed);
     }
 
-    private void OnEnable() {
-        playerinputs.Enable();
+    private void OnEnable()
+    {
+        // Habilita el sistema de entrada
+        if (playerinputs != null)
+        {
+            playerinputs.Enable();
+        }
+        else
+        {
+            playerinputs = new PlayerInputs();
+        }
     }
-    private void OnDisable() {
-        playerinputs.Disable();
+
+    private void OnDisable()
+    {
+        // Deshabilita el sistema de entrada
+        if (playerinputs != null)
+        {
+            playerinputs.Disable();
+        }
     }
 }

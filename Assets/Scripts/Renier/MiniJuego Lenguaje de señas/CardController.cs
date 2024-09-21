@@ -54,7 +54,6 @@ public class CardController : MonoBehaviour, IPointerDownHandler, IBeginDragHand
         }else if(inPosition && !draggin)
         {
             rectTransform.anchoredPosition = initialPositon;
-            signLanguageMiniGame.ReturnCard(availableSpot.belongsTo);
         }
     }
     

@@ -54,7 +54,6 @@ public class SignLanguageMiniGame : MonoBehaviour
         {
             positions.Add(transform.GetChild(i));
             positions[i].TryGetComponent(out AvailableSpot component);
-            component.belongsTo = i;
         }
     }
 }
