@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,26 +21,31 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] private GameObject winnedGameText;
     [SerializeField] private GameObject losedgameText;
     [SerializeField] private GameObject miniGameCanvas;
-
+    [SerializeField] private Renderer popUpRenderer;
+    [SerializeField] Timer timer;
     [SerializeField] private bool win = false;
     int currentClickCount = 1;
-    private float elapsedTime = 0;
 
     private void Start() {
         StartCoroutine(StartPopUpWindowGame());
         popupWindow.SetActive(false);
+        popUpRenderer = popupWindow.GetComponent<Renderer>();
     }
     private void Update() {
         if(startGame)
         {
-            elapsedTime += Time.deltaTime; 
-            timerText.text = elapsedTime.ToString();
+            timer.start = true;
         }
-        if(elapsedTime == timeToWin)
-            {
-                StopAllCoroutines();
-                WinOrLoseCanvas(win);
-            }
+        if(timer.CurrentTime == 0)
+        {
+            StopAllCoroutines();
+            WinOrLoseCanvas(win);
+        }
+        if(win == true)
+        {
+            WinOrLoseCanvas(win);
+            startGame = false;
+        }
     }
 
     private void WinOrLoseCanvas(bool win)
@@ -63,11 +69,23 @@ public class MiniJuegoSeñora : MonoBehaviour
             yield return new WaitUntil(()=>currentClickCount == requiredClicksPerPopUp);
             popupWindow.SetActive(false);
         }
+        startGame = false;
         win = true;
     }
 
     public void AddClick()
     {
         currentClickCount++;
+    }
+
+    public void FadeOut()
+    {
+        popupWindow.GetComponent<Image>().DOFade(0,0.1f).OnComplete(FadeIn);
+        popupWindow.GetComponent<RectTransform>().DOScale(0, 0.1f);
+    }
+    void FadeIn()
+    {
+        popupWindow.GetComponent<RectTransform>().DOScale(1.5f,0);
+        popupWindow.GetComponent<Image>().DOFade(1,0f);
     }
 }
