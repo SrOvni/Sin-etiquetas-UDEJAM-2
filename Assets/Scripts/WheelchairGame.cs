@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class WheelchairGame : MonoBehaviour
 {
@@ -28,6 +29,12 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] private bool _gameIsStarted = false;
 
+    [SerializeField] public UnityEvent OnPreesKey;
+
+    [SerializeField] public UnityEvent OnCompleteGame;
+
+    [SerializeField] public UnityEvent OnRestarGame;
+
 
     private void Start()
     {
@@ -46,6 +53,8 @@ public class WheelchairGame : MonoBehaviour
             {
                 _currentValue += _onKeyPreseedValue;
 
+                OnPreesKey.Invoke();
+
                 if(_currentValue >= _totalAmountValue)
                 {
                     OnCompletedLevel();
@@ -58,6 +67,7 @@ public class WheelchairGame : MonoBehaviour
     {
         _wheelChairGameIsCompleted=true;
         StartCoroutine(CanvasWinAnimation());
+        OnCompleteGame.Invoke();
         RestartWheelChairGame();
     }
 
@@ -70,6 +80,7 @@ public class WheelchairGame : MonoBehaviour
 
     public void RestartWheelChairGame()
     {
+        OnRestarGame.Invoke();
         _gameIsStarted = false;
         _currentValue = 0;
         _slider.value = _currentValue;
