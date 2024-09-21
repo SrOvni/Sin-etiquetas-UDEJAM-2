@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -24,16 +22,30 @@ public class InputManager : MonoBehaviour
     {
         MovementDirection = context.ReadValue<Vector2>();
     }
-
     void OnInteract (InputAction.CallbackContext context)
     {
         Interact = context.ReadValueAsButton();
     }
 
-    private void OnEnable() {
-        playerinputs.Enable();
+    private void OnEnable()
+    {
+        // Habilita el sistema de entrada
+        if (playerinputs != null)
+        {
+            playerinputs.Enable();
+        }
+        else
+        {
+            playerinputs = new PlayerInputs();
+        }
     }
-    private void OnDisable() {
-        playerinputs.Disable();
+
+    private void OnDisable()
+    {
+        // Deshabilita el sistema de entrada
+        if (playerinputs != null)
+        {
+            playerinputs.Disable();
+        }
     }
 }
