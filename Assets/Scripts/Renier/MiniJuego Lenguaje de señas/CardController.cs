@@ -57,6 +57,7 @@ public class CardController : MonoBehaviour, IPointerDownHandler, IBeginDragHand
             signLanguageMiniGame.ReturnCard(availableSpot.belongsTo);
         }
     }
+    
 
     public void OnBeginDrag(PointerEventData eventData)
     {
