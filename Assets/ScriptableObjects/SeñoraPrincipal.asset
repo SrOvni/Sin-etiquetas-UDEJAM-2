@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8d5c9af462529479ecf2a65d971f04, type: 3}
-  m_Name: SillaDeRuedasMain
+  m_Name: "Se\xF1oraPrincipal"
   m_EditorClassIdentifier: 
   dialogues:
-  - NPC
-  - PROTA
+  - No hay dialogo
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 010000000000000001000000010000000100000000000000
-  isPlayerDecision: 0100
-  playerDecisions:
-  - desicion1: tomar mision
-    desicion2: Rechazar misiion
+  dialogueOrder: 
+  isPlayerDecision: 
+  playerDecisions: []

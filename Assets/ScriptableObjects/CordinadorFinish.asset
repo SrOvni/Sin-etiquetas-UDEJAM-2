@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8d5c9af462529479ecf2a65d971f04, type: 3}
-  m_Name: "Se\xF1ora"
+  m_Name: CordinadorFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - Linea 1
-  - Linea 2
-  - Linea 3
-  - "Me gustar\xEDa ayudarte"
-  - Linea 5
+  - No hay dialogo
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0100000001000000010000000000000001000000
-  isPlayerDecision: 01
-  playerDecisions:
-  - desicion1: "Tomar misi\xF3n"
-    desicion2: Rechazar
+  dialogueOrder: 
+  isPlayerDecision: 
+  playerDecisions: []
