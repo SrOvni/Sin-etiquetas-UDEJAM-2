@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using DG.Tweening;
 
 public class Timer : MonoBehaviour
 {
@@ -19,6 +20,15 @@ public class Timer : MonoBehaviour
             currentTime -= Time.deltaTime;
             int intTime = Mathf.RoundToInt(currentTime);
             text.text = intTime.ToString();
+        }
+
+        if(currentTime < (time * 0.7) && currentTime > (time * 0.4))
+        {
+            text.DOColor(Color.yellow, 0.6f);
+        }
+        else if(currentTime < (time * 0.4))
+        {
+            text.DOColor(Color.red, 0.2f);
         }
     }
     public void RestarTimer()
