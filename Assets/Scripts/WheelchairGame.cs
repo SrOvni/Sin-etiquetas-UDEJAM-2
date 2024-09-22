@@ -49,9 +49,11 @@ public class WheelchairGame : MonoBehaviour
             StartWheelChairGame();
         }
 
-        if(_timer.CurrentTime == 0)
+        if(_timer.CurrentTime <= 0f && _gameIsStarted)
         {
             _gameIsStarted = false;
+            _timer.start = false;
+            _timer.RestarTimer();
             WinOrLoseGame(false);
         }
     }
@@ -64,7 +66,7 @@ public class WheelchairGame : MonoBehaviour
         }
         else
         {
-            RestartWheelChairGame();           
+            LoseGame();          
         }
     }
 
@@ -73,22 +75,25 @@ public class WheelchairGame : MonoBehaviour
         StartCoroutine(CanvasWinAnimation());
         _wheelChairGameIsCompleted =true;
         OnCompleteGame.Invoke();
-        RestartWheelChairGame();
     }
 
     public void StartGame()
-    {
+    {      
         _gameIsStarted = true;
         _sliderCanvas.SetActive(true);       
     }
 
+    public void LoseGame()
+    {
+        StartCoroutine(CanvasLoseAnimation());
+    }
     public void RestartWheelChairGame()
     {
         OnRestarGame.Invoke();
         _gameIsStarted = false;
+        _timer.CurrentTime = 0;
         _currentValue = 0;
         _slider.value = _currentValue;
-        StartCoroutine(CanvasLoseAnimation());
         _sliderCanvas.SetActive(false);      
     }
 
@@ -114,8 +119,8 @@ public class WheelchairGame : MonoBehaviour
 
             if (_currentValue >= _totalAmountValue)
             {
-                WinOrLoseGame(true);
-                _gameIsStarted=false;
+                _gameIsStarted = false;
+                WinOrLoseGame(true);               
             }
         }
     }
@@ -125,6 +130,7 @@ public class WheelchairGame : MonoBehaviour
         _canvasLose.SetActive(true);
         yield return new WaitForSeconds(3);
         _canvasLose.SetActive(false);
+        RestartWheelChairGame();
     }
 
     public IEnumerator CanvasWinAnimation()
@@ -132,5 +138,6 @@ public class WheelchairGame : MonoBehaviour
         _canvasWin.SetActive(true);
         yield return new WaitForSeconds(3);
         _canvasWin.SetActive(false);
+        RestartWheelChairGame();
     }
 }
