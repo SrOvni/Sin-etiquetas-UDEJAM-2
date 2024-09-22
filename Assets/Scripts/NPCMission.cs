@@ -17,20 +17,17 @@ public class NPCMission : MonoBehaviour
     public void StartMission()
     {
         _missionIsStarted = true;
-        Debug.Log("Mision iniciada");
         OnStartMission.Invoke();
     }
 
     public void DontHaveItemMission()
     {
         OnDontHaveItems.Invoke();
-        Debug.Log("No tienes el item");
     }
 
     public void CompletedMision()
     {
         _theMissionIsCompleted = true;
-        Debug.Log("Completaste la mision");
         OnCompleteMision.Invoke();
     }
 
