@@ -62,7 +62,8 @@ public class WheelchairGame : MonoBehaviour
         if( _gameIsStarted)
         {
             _timer.start = true;
-            StartWheelChairGame();
+            DecrementValue();
+            _slider.value = _currentValue;
         }
 
         if(_timer.CurrentTime <= 0f && _gameIsStarted)
@@ -142,11 +143,7 @@ public class WheelchairGame : MonoBehaviour
 
     public void StartWheelChairGame()
     {
-        _slider.value = _currentValue;
-
-        DecrementValue();
-
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (_gameIsStarted)
         {
             _currentValue += _onKeyPreseedValue;
 
@@ -157,9 +154,9 @@ public class WheelchairGame : MonoBehaviour
             if (_currentValue >= _totalAmountValue)
             {
                 _gameIsStarted = false;
-                WinOrLoseGame(true);               
+                WinOrLoseGame(true);
             }
-        }
+        }                
     }
 
     void OnkeyPressedAnimation()

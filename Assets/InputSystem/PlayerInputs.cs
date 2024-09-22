@@ -118,6 +118,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WheelChildAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""771f02b0-655d-489a-bfd3-052741d819bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -142,6 +151,76 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b04d1f8f-7a26-4d80-b2c3-119dd6877bce"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WheelChildAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""758d39a4-5414-4285-9976-6cbcbec9e32f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WheelChildAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Actions"",
+            ""id"": ""0a69137f-fb96-4920-a0c8-1af75100480a"",
+            ""actions"": [
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4148958-1886-4553-9858-e5e183d39a10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""eaf949a0-5aa1-4493-8a23-aeddac81b717"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a0e25bf6-46a3-4705-820a-978e55a33f3a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77bcc456-cdef-4445-9d7e-41902b6dc3fc"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -154,6 +233,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Interacts
         m_Interacts = asset.FindActionMap("Interacts", throwIfNotFound: true);
         m_Interacts_Interact = m_Interacts.FindAction("Interact", throwIfNotFound: true);
+        m_Interacts_WheelChildAction = m_Interacts.FindAction("WheelChildAction", throwIfNotFound: true);
+        // Actions
+        m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_Interaction = m_Actions.FindAction("Interaction", throwIfNotFound: true);
+        m_Actions_Exit = m_Actions.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,11 +346,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Interacts;
     private List<IInteractsActions> m_InteractsActionsCallbackInterfaces = new List<IInteractsActions>();
     private readonly InputAction m_Interacts_Interact;
+    private readonly InputAction m_Interacts_WheelChildAction;
     public struct InteractsActions
     {
         private @PlayerInputs m_Wrapper;
         public InteractsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_Interacts_Interact;
+        public InputAction @WheelChildAction => m_Wrapper.m_Interacts_WheelChildAction;
         public InputActionMap Get() { return m_Wrapper.m_Interacts; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -279,6 +365,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @WheelChildAction.started += instance.OnWheelChildAction;
+            @WheelChildAction.performed += instance.OnWheelChildAction;
+            @WheelChildAction.canceled += instance.OnWheelChildAction;
         }
 
         private void UnregisterCallbacks(IInteractsActions instance)
@@ -286,6 +375,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @WheelChildAction.started -= instance.OnWheelChildAction;
+            @WheelChildAction.performed -= instance.OnWheelChildAction;
+            @WheelChildAction.canceled -= instance.OnWheelChildAction;
         }
 
         public void RemoveCallbacks(IInteractsActions instance)
@@ -303,6 +395,60 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     public InteractsActions @Interacts => new InteractsActions(this);
+
+    // Actions
+    private readonly InputActionMap m_Actions;
+    private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
+    private readonly InputAction m_Actions_Interaction;
+    private readonly InputAction m_Actions_Exit;
+    public struct ActionsActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public ActionsActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interaction => m_Wrapper.m_Actions_Interaction;
+        public InputAction @Exit => m_Wrapper.m_Actions_Exit;
+        public InputActionMap Get() { return m_Wrapper.m_Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ActionsActionsCallbackInterfaces.Add(instance);
+            @Interaction.started += instance.OnInteraction;
+            @Interaction.performed += instance.OnInteraction;
+            @Interaction.canceled += instance.OnInteraction;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+        }
+
+        private void UnregisterCallbacks(IActionsActions instance)
+        {
+            @Interaction.started -= instance.OnInteraction;
+            @Interaction.performed -= instance.OnInteraction;
+            @Interaction.canceled -= instance.OnInteraction;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+        }
+
+        public void RemoveCallbacks(IActionsActions instance)
+        {
+            if (m_Wrapper.m_ActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ActionsActions @Actions => new ActionsActions(this);
     public interface IMovementActions
     {
         void OnWalk(InputAction.CallbackContext context);
@@ -310,5 +456,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface IInteractsActions
     {
         void OnInteract(InputAction.CallbackContext context);
+        void OnWheelChildAction(InputAction.CallbackContext context);
+    }
+    public interface IActionsActions
+    {
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }
