@@ -36,24 +36,31 @@ public class NPCMission : MonoBehaviour
 
     public void CheckInventoryPlayer() 
     {
-        if (!_theMissionIsCompleted && _missionIsStarted)
+        if (_playerInventory._inventoryItems.Count <= 0 && _missionIsStarted)
         {
-            for (int i = 0; i < _playerInventory._inventoryItems.Count; i++)
-            {
-                if (_playerInventory._inventoryItems[i]== _itemsToSearch)
-                {
-                    CompletedMision();
-                    _playerInventory.RemoveItemByName(_itemsToSearch);
-                }
-                else
-                {
-                    DontHaveItemMission();
-                }
-            }  
+            DontHaveItemMission();
         }
         else
         {
-            OnCompleteMision.Invoke();
-        }
+            if (!_theMissionIsCompleted && _missionIsStarted)
+            {
+                for (int i = 0; i < _playerInventory._inventoryItems.Count; i++)
+                {
+                    if (_playerInventory._inventoryItems[i] == _itemsToSearch)
+                    {
+                        CompletedMision();
+                        _playerInventory.RemoveItemByName(_itemsToSearch);
+                    }
+                    else
+                    {
+                        DontHaveItemMission();
+                    }
+                }
+            }
+            else
+            {
+                OnCompleteMision.Invoke();
+            }
+        }       
     }
 }
