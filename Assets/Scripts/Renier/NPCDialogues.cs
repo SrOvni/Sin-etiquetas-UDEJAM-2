@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine.Events;
-public class NPCDialogues : MonoBehaviour, INPC
+public class NPCDialogues : MonoBehaviour
 {
     InputManager _inputs;
     int index = 0;
@@ -106,7 +106,7 @@ public class NPCDialogues : MonoBehaviour, INPC
                 yield return new WaitForSeconds(textSpeed);
             }
             index++;
-            yield return new WaitUntil(()=>_inputs.IsSpaceBarPressed);
+            yield return new WaitUntil(()=>_inputs.Interact);
             
         }
         animationFinished = false;

@@ -7,7 +7,7 @@ public class DialogueInteractions : MonoBehaviour
 {
     InputManager _inputs;
     TemporalMovement movement;
-    bool spaceBarWasPressed  = false;
+    bool hasInteracted  = false;
     private void Start() {
         _inputs = GetComponent<InputManager>();
         movement = GetComponent<TemporalMovement>();
@@ -22,18 +22,20 @@ public class DialogueInteractions : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.TryGetComponent(out NPCDialogues component))
         {
-            if(_inputs.IsSpaceBarPressed && !spaceBarWasPressed)
+            if(_inputs.Interact && !hasInteracted)
             {
                 movement.enabled = false;
                 component.PlayDialogue();
-                spaceBarWasPressed = true;
+                hasInteracted = true;
             }
+            /*
             else if(_inputs.IsEscapeKeyPressed)
             {
                 movement.enabled = true;
                 component.ExitDialogue();
                 spaceBarWasPressed = false;
             }
+            */
         }   
     }
     private void OnTriggerExit2D(Collider2D other) {
