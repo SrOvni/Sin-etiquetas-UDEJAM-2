@@ -26,6 +26,8 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] private Slider _slider;
 
+    [SerializeField] private Image _fillSlider;
+
     [SerializeField] private GameObject _canvasWin;
 
     [SerializeField] private GameObject _canvasLose;
@@ -70,6 +72,8 @@ public class WheelchairGame : MonoBehaviour
             _timer.RestarTimer();
             WinOrLoseGame(false);
         }
+
+        UpdateSliderColor();
     }
 
     void WinOrLoseGame(bool result)
@@ -81,6 +85,22 @@ public class WheelchairGame : MonoBehaviour
         else
         {
             LoseGame();          
+        }
+    }
+
+    void UpdateSliderColor()
+    {
+        if(_slider.value >= (_totalAmountValue * 0.3f) && _slider.value <= (_totalAmountValue * 0.5f))
+        {
+            _fillSlider.DOColor(Color.yellow, 0.2f);
+        }
+        else if(_slider.value >= (_totalAmountValue * 0.51f) && _slider.value <= (_totalAmountValue * 0.7f))
+        {
+            _fillSlider.DOColor(Color.magenta, 0.2f);
+        }
+        else if (_slider.value >= (_totalAmountValue * 0.71f))
+        {
+            _fillSlider.DOColor(Color.red, 0.2f);
         }
     }
 
