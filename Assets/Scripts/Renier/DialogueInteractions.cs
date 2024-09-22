@@ -2,19 +2,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
-
+public enum PlayerQuestState
+{
+    dialogue,
+    winGame,
+    restartGame,
+    reDoQuest,
+    bringItem
+}
 public class DialogueInteractions : MonoBehaviour
 {
+    [SerializeField] private PlayerQuestState playerQuestState = PlayerQuestState.dialogue;
+    public PlayerQuestState CurrentPlayerQuestState{get{return playerQuestState;}set{playerQuestState = value;}}
     InputManager _inputs;
-    TemporalMovement movement;
+    [SerializeField] NPCScriptableObject fistTimeDialogue;
+    [SerializeField] NPCScriptableObject retryQuest;
+    [SerializeField] NPCScriptableObject reDoQuest;
+    [SerializeField] NPCScriptableObject wrongItems;
+    [SerializeField] NPCScriptableObject correctItems;
+
+    public MovementPlayer Movement{get; private set;}
     bool hasInteracted  = false;
+    public bool HasInteracted{get{return hasInteracted;}set{hasInteracted = value;}}
     private void Start() {
         _inputs = GetComponent<InputManager>();
-        movement = GetComponent<TemporalMovement>();
+        Movement = GetComponent<MovementPlayer>();
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.TryGetComponent(out NPCDialogues component))
         {
+            Debug.Log("Script found");
            component.SpaceBarImage.gameObject?.SetActive(true);
            component.ExclamationSign.gameObject.SetActive(false);
         }   
@@ -24,9 +41,8 @@ public class DialogueInteractions : MonoBehaviour
         {
             if(_inputs.Interact && !hasInteracted)
             {
-                movement.enabled = false;
-                component.PlayDialogue();
-                hasInteracted = true;
+                hasInteracted = true; //Volver falso después de la interacción para poder volver a interactuar con los NPCs
+                component.PlayDialogueQuest();
             }
             /*
             else if(_inputs.IsEscapeKeyPressed)
