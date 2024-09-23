@@ -21,6 +21,8 @@ public class DialogueInteractions : MonoBehaviour
     [SerializeField] NPCScriptableObject wrongItems;
     [SerializeField] NPCScriptableObject correctItems;
 
+    private bool canInteract = true;
+    public bool CanInteract { get { return canInteract; } set { canInteract = value; } }
     public MovementPlayer Movement{get; private set;}
     [SerializeField] bool hasInteracted  = false;
     public bool HasInteracted{get{return hasInteracted;}set{hasInteracted = value;}}
@@ -39,7 +41,7 @@ public class DialogueInteractions : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.TryGetComponent(out NPCDialogues component))
         {
-            if(_inputs.Interact && !hasInteracted)
+            if(_inputs.Interact && !hasInteracted && canInteract)
             {
                 hasInteracted = true; //Volver falso después de la interacción para poder volver a interactuar con los NPCs
                 component.PlayDialogueQuest();

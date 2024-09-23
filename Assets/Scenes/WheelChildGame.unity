@@ -201,6 +201,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1620845075442338714, guid: 7d047835c6b300b419ccc263a8374a4b, type: 3}
   m_PrefabInstance: {fileID: 4022408336692361301}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038590464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1377268113600299638, guid: 7d047835c6b300b419ccc263a8374a4b, type: 3}
+  m_PrefabInstance: {fileID: 4022408336692361301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed734478ecefaa4583e4f6e78842c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1293205547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1275,7 @@ MonoBehaviour:
   reDoQuest: {fileID: 0}
   wrongItems: {fileID: 0}
   correctItems: {fileID: 0}
+  hasInteracted: 0
 --- !u!1 &1931906645498690726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,13 +2650,13 @@ MonoBehaviour:
   OnCompleteMision:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1038590464}
+        m_TargetAssemblyTypeName: NPCDialogues, Assembly-CSharp
+        m_MethodName: OnComplete
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2653,13 +2665,13 @@ MonoBehaviour:
   OnDontHaveItems:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1038590464}
+        m_TargetAssemblyTypeName: NPCDialogues, Assembly-CSharp
+        m_MethodName: OnProcess
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2668,17 +2680,17 @@ MonoBehaviour:
   OnStartMission:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1797065274991860106}
-        m_TargetAssemblyTypeName: DialogueInteractions, Assembly-CSharp
-        m_MethodName: set_HasInteracted
-        m_Mode: 6
+      - m_Target: {fileID: 1038590464}
+        m_TargetAssemblyTypeName: NPCDialogues, Assembly-CSharp
+        m_MethodName: OnProcess
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!50 &5276391692694542396
 Rigidbody2D:

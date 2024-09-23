@@ -20,6 +20,10 @@ public class NPCDialogues : MonoBehaviour
     [SerializeField] private float textSpeed = 0.1f;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject exclamationSign;
+
+    private bool canInteract = true;
+    public bool CanInteract { get { return canInteract; } set { canInteract = value; } }
+
     [Header("Animaciones")]
     [SerializeField] private Transform dialogueBoxPosition;
     [SerializeField] private Transform npcDialogueBoxTargetPosition;
@@ -66,11 +70,11 @@ public class NPCDialogues : MonoBehaviour
         }
     }
     void PlayDialogue()
-    {
-        spaceBarImage?.SetActive(false);
-        dialogueBoxCanvas.gameObject?.SetActive(true);
-        npcImage.gameObject.SetActive(true);
-        StartCoroutine(TypeLine());
+    {     
+            spaceBarImage?.SetActive(false);
+            dialogueBoxCanvas.gameObject?.SetActive(true);
+            npcImage.gameObject.SetActive(true);
+            StartCoroutine(TypeLine());      
     }
     public void PlayDialogueQuest()
     {
