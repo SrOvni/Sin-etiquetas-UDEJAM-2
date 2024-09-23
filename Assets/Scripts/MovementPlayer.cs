@@ -37,14 +37,21 @@ public class MovementPlayer : MonoBehaviour
     private void Update()
     {
 
-        if (_inputs.MovementDirection.magnitude >= 0.1f )
+        if (_canMove)
         {
-            targetVelocity = _inputs.MovementDirection * moveSpeed;
-            rb.velocity = targetVelocity;           
+            if (_inputs.MovementDirection.magnitude >= 0.1f)
+            {
+                targetVelocity = _inputs.MovementDirection * moveSpeed;
+                rb.velocity = targetVelocity;
+            }
+            else
+            {
+                rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref currentVelocity, smoothTime);
+            }
         }
         else
         {
-            rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref currentVelocity, smoothTime);         
+            rb.velocity = Vector2.zero;
         }
         UpdateAnimation();
 
@@ -81,6 +88,15 @@ public class MovementPlayer : MonoBehaviour
         }                   
     }
 
+    public void DontMovePlayer()
+    {
+        _canMove = false;
+    }
+
+    public void CantMovePlayer()
+    {
+        _canMove = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<InventoryItem>() != null)

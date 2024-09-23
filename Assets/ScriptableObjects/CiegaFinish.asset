@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CiegaFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - Te veo en la fiesta entonces? aqui tienes lo que necesitabas
+  - "claro, ah\xED estar\xE9"
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
   playerDecisions: []
