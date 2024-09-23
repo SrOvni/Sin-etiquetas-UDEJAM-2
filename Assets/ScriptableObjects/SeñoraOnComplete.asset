@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8d5c9af462529479ecf2a65d971f04, type: 3}
-  m_Name: "Se\xF1ora"
+  m_Name: "Se\xF1oraOnComplete"
   m_EditorClassIdentifier: 
   dialogues:
-  - Estoy teniendo problemas en convertir mi excel en un pdf
-  - "\xBFMe pordr\xEDas ayudar?"
-  - Claro
-  - Eres muy amable
+  - Muchas gracias por ayudarme
   protaRejectionLine: No puedo ahora, lo siento
-  npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 01000000010000000000000001000000
+  npcsRejectionLine: "Espero que me puedas ayudar m\xE1s tarde"
+  dialogueOrder: 01000000
   isPlayerDecision: 01
   playerDecisions:
-  - desicion1: Aceptar
+  - desicion1: "Tomar misi\xF3n"
     desicion2: Rechazar

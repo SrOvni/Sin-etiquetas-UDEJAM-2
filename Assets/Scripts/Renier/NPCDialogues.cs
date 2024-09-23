@@ -74,10 +74,16 @@ public class NPCDialogues : MonoBehaviour
     }
     public void PlayDialogueQuest()
     {
+        index = 0;
+        dialogueBoxText.text = string.Empty;
         dialogueInteractions.Movement.enabled = false;
         missionWasRejected = false;
         playerTakesDesicion = false;
         PlayDialogue();
+    }
+    public void PlayOnProcessDialogue()
+    {
+        currentDialogue = npcOnProccesDialogue;
     }
     public 
     IEnumerator TypeLine()
@@ -131,11 +137,9 @@ public class NPCDialogues : MonoBehaviour
         spaceBarImage.gameObject.SetActive(true);
         Debug.Log("Acabo el dialogo");
         OnDialgoueEnd?.Invoke();
-        StopAllCoroutines();
         if (missionWasRejected)
         {
-            dialogueInteractions.HasInteracted = false;
-            missionWasRejected = transform;
+            missionWasRejected = false;
         }
     }
     void PlayDialogueAnimation()
@@ -197,6 +201,7 @@ public class NPCDialogues : MonoBehaviour
     }
     public void OnComplete()
     {
+        exclamationSign.SetActive(false);
         currentDialogue=npcOnCompleteMission;
     }
 }
