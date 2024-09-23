@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class SLMiniGame : MonoBehaviour
 {
+    [SerializeField] private  MovementPlayer movement;
     [SerializeField] GameObject groupOfPosition;
     [SerializeField] GameObject groupWithWords;
     [SerializeField] List<Transform> positions;
@@ -22,18 +23,31 @@ public class SLMiniGame : MonoBehaviour
     public UnityEvent OnReturnPosition;
     [SerializeField] float secondsForCardToReorder = 2;
     [SerializeField] UnityEvent InReorderOfCards;
+    [SerializeField] UnityEvent LoseGame;
+    [SerializeField] UnityEvent WinGame;
+    [SerializeField] UnityEvent OnComplete;
     private void Start() {
-        positions = GetPositions(groupOfPosition);
-        words = GetPositions(groupWithWords);
-        OrdenarPosiciones();
-        availablePosition = new List<bool>(positions.Count);
-        availablePositionCount = positions.Count;
-        StartCoroutine(StartGame());
-        timer.time = 50f;
+        
 
 
     }
-private void Update() {
+    public void InitializeGame()
+    {
+        if(!playerWin)
+        {
+            movement.DontMovePlayer();
+            positions = GetPositions(groupOfPosition);
+            words = GetPositions(groupWithWords);
+            OrdenarPosiciones();
+            availablePosition = new List<bool>(positions.Count);
+            availablePositionCount = positions.Count;
+            startGame = true;
+            StartCoroutine(StartGame());
+        }else{
+            return;
+        }
+    }
+    private void Update() {
     if(startGame)
     {
         if(availablePositionCount == 0)
@@ -45,13 +59,44 @@ private void Update() {
                 StartCoroutine(ReordenarCartas(secondsForCardToReorder));
             }
         }
-        if(timer.CurrentTime == 0)
+        if(timer.CurrentTime <= 0)
         {
+            StopCoroutine(StartGame());
+            EndGame();
             playerWin = false;
         }
     }else{
         playerWin = false;
     }
+}
+IEnumerator CloseCanvasWin()
+{
+    win.gameObject.SetActive(true);
+    yield return new WaitForSeconds(secondsForCardToReorder);
+    win.gameObject.SetActive(false);
+}
+IEnumerator CloseCanvasLose()
+{
+    lose.gameObject.SetActive(true);
+    yield return new WaitForSeconds(secondsForCardToReorder);
+    lose.gameObject.SetActive(false);
+}
+void EndGame()
+{
+    if(playerWin)
+        {
+            
+            StartCoroutine(CloseCanvasWin());
+            WinGame?.Invoke();
+    }else{
+        StartCoroutine(CloseCanvasLose());
+        LoseGame?.Invoke();
+    }
+    timer.start = false;
+    timer.RestarTimer();
+    startGame = false;
+    movement.CantMovePlayer();
+    gameObject.SetActive(false);
 }
     private List<Transform> GetPositions(GameObject group)
     {
@@ -91,14 +136,8 @@ private void Update() {
         yield return new WaitUntil(()=>startGame);
         timer.start = true;
         yield return new WaitUntil(()=>playerWin);
-        startGame = false;
-        timer.start = false;
-        if(playerWin)
-        {
-            win.gameObject.SetActive(true);
-        }else{
-            lose.gameObject.SetActive(true);
-        }
+        yield return new WaitForSeconds(1);
+        EndGame();
     }
     public void AgregarCarta()
     {

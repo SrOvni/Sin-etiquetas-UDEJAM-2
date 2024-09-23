@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: "Se\xF1oraFinish"
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - "Nos vemos en la fiesta claro que s\xED"
+  - "Claro que s\xED"
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
   playerDecisions: []

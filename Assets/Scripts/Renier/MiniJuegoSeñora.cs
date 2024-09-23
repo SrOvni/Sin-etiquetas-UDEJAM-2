@@ -42,6 +42,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     {
         if(win){
             OnPlayerWin?.Invoke();
+            return;
         }
         startGame = true;
         timer.start = true;
