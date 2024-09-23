@@ -35,39 +35,46 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] Timer timer;
     [SerializeField] private bool win = false;
     [SerializeField] UnityEvent OnPlayerWin;
+    [SerializeField] UnityEvent OnPlayerLose;
     [SerializeField] bool waiting = true;
+    bool finishedpopingout = false;
 
     private void Start() {
         StartCoroutine(StartPopUpWindowGame());
         Debug.Log("Corrutina iniciada");
+        timer.CurrentTime = timeToWin;
+        timer.time = timeToWin;
     }
 
     private void Update() {
-        if(startGame)
+    if (startGame)
+    {
+        waiting = false;
+        timer.start = true;
+
+        if (timer.CurrentTime <= 0|| finishedpopingout)
         {
-            waiting = false;
-            timer.start = true;
-            if(timer.CurrentTime == 0)
-            {
-                startGame = false;
-                WinOrLoseCanvas(win);
-            }
-        }if(!startGame && !waiting){
-            WinOrLoseCanvas(win);
             timer.start = false;
+            startGame = false;
+            StartCoroutine(WinOrLoseCanvas(win));
         }
     }
+}
 
     private IEnumerator WinOrLoseCanvas(bool win)
     {
+
         if (win)
         {
+            OnPlayerWin?.Invoke();
             winnedGameText.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             winnedGameText.SetActive(false);
+            
         }else{
+            OnPlayerLose?.Invoke();
             losedgameText.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             losedgameText.SetActive(false);
         }
         OnGameEnd();
@@ -75,18 +82,20 @@ public class MiniJuegoSeñora : MonoBehaviour
     void OnGameStart()
     {
         playerMovement.enabled = false;
+        timer.gameObject.SetActive(true);
         //Falta quitar velocity de rigidbody
     }
     void OnGameEnd(){
+        timer.gameObject.SetActive(false);
         mainWindow.SetActive(false);
         playerMovement.enabled = true;
+        StopAllCoroutines();
     }
     IEnumerator StartPopUpWindowGame()
     {
         yield return new WaitUntil(()=> startGame);
         mainWindow.SetActive(true);
         Debug.Log("Game Started");
-        timer.gameObject.SetActive(true);
         OnGameStart();
         for(int i = 0; i < popupWindowgroup.transform.childCount;i++)
         {
@@ -94,11 +103,9 @@ public class MiniJuegoSeñora : MonoBehaviour
             popUps[i].GetComponent<PopUpWindow>().ShowWindow();
             yield return new WaitForSeconds(3);
         }
-        for(int i = 0; i < popupWindowgroup.transform.childCount;i++)
-        {
-            yield return new WaitUntil(()=> popUps[i].GetComponent<PopUpWindow>().WindowsIsClosed);
-        }
-        startGame = false;
+        yield return new WaitUntil(()=> popUps.All(popup => popup.GetComponent<PopUpWindow>().WindowsIsClosed));
         win = true;
+        finishedpopingout = true;
+
     }
 }

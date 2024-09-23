@@ -305,10 +305,10 @@ MonoBehaviour:
   OnPlayerWin:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1269278327}
-        m_TargetAssemblyTypeName: DialogueInteractions, Assembly-CSharp
-        m_MethodName: set_HasInteracted
-        m_Mode: 6
+      - m_Target: {fileID: 7874287712925509680}
+        m_TargetAssemblyTypeName: NPCDialogues, Assembly-CSharp
+        m_MethodName: OnComplete
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -317,6 +317,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnPlayerLose:
+    m_PersistentCalls:
+      m_Calls: []
   waiting: 1
 --- !u!4 &72173947
 Transform:
@@ -6352,6 +6355,51 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &1223800907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223800908}
+  - component: {fileID: 1223800909}
+  m_Layer: 0
+  m_Name: GameManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223800908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223800907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1300.989, y: -70.04482, z: -9.811286}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223800909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223800907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84eabab4bfa8a9408e7c3d5f7f98727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 1
 --- !u!1 &1269278321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6508,6 +6556,7 @@ MonoBehaviour:
   reDoQuest: {fileID: 0}
   wrongItems: {fileID: 0}
   correctItems: {fileID: 0}
+  hasInteracted: 0
 --- !u!114 &1284452460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12592,6 +12641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed734478ecefaa4583e4f6e78842c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDialogue: {fileID: 0}
   npcMainDialogue: {fileID: 11400000, guid: a6359ac37e3acb84386429ad08b721f7, type: 2}
   npcOnProccesDialogue: {fileID: 0}
   npcOnCompleteMission: {fileID: 0}
@@ -12636,6 +12686,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1269278327}
+        m_TargetAssemblyTypeName: DialogueInteractions, Assembly-CSharp
+        m_MethodName: set_HasInteracted
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   takeMissionButton: {fileID: 5817464676988647580}
   takeMissionText: {fileID: 2320420109601147272}
@@ -13139,6 +13201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed734478ecefaa4583e4f6e78842c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDialogue: {fileID: 0}
   npcMainDialogue: {fileID: 11400000, guid: 4a1f54f5aa09bf341b848196ef28b479, type: 2}
   npcOnProccesDialogue: {fileID: 0}
   npcOnCompleteMission: {fileID: 0}
@@ -13515,3 +13578,4 @@ SceneRoots:
   - {fileID: 7386663780568776817}
   - {fileID: 963330614}
   - {fileID: 1968780851}
+  - {fileID: 1223800908}

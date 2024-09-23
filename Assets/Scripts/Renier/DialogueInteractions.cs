@@ -22,7 +22,7 @@ public class DialogueInteractions : MonoBehaviour
     [SerializeField] NPCScriptableObject correctItems;
 
     public MovementPlayer Movement{get; private set;}
-    bool hasInteracted  = false;
+    [SerializeField] bool hasInteracted  = false;
     public bool HasInteracted{get{return hasInteracted;}set{hasInteracted = value;}}
     private void Start() {
         _inputs = GetComponent<InputManager>();
@@ -44,14 +44,6 @@ public class DialogueInteractions : MonoBehaviour
                 hasInteracted = true; //Volver falso después de la interacción para poder volver a interactuar con los NPCs
                 component.PlayDialogueQuest();
             }
-            /*
-            else if(_inputs.IsEscapeKeyPressed)
-            {
-                movement.enabled = true;
-                component.ExitDialogue();
-                spaceBarWasPressed = false;
-            }
-            */
         }   
     }
     private void OnTriggerExit2D(Collider2D other) {
