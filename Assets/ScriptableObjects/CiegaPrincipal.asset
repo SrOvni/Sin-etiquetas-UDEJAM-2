@@ -18,7 +18,7 @@ MonoBehaviour:
   - fdsfdshg
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 010000000000000000000000
+  dialogueOrder: 010000000000000001000000
   isPlayerDecision: 01
   playerDecisions:
   - desicion1: Claro
