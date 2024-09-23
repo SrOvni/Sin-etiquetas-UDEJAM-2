@@ -36,8 +36,11 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] UnityEvent OnPlayerWin;
     [SerializeField] UnityEvent OnPlayerLose;
     [SerializeField] bool waiting = true;
+    [SerializeField] WinTheGame winTheGame;
+    bool canvasisoff;
     bool finishedpopingout = false;
     private float TimeToTurnOffCanvas;
+    private bool gameEnded = false;
 
     public void StartGame()
     {
@@ -45,10 +48,12 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerWin?.Invoke();
             return;
         }
+        gameEnded = false;
         playerMovement.CantMovePlayer();
         timer.gameObject.SetActive(true);
         timer.start = true;
         startGame = true;
+        canvasisoff = false;
         StartCoroutine(StartPopUpWindowGame());
     }
     private void Update() {
@@ -56,6 +61,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     {
         if (timer.CurrentTime <= 0|| finishedpopingout)
         {
+            gameEnded = true;
             StartCoroutine(OnGameEnd());
         }
     }
@@ -70,22 +76,30 @@ public class MiniJuegoSeñora : MonoBehaviour
             winnedGameText.SetActive(true);
             yield return new WaitForSeconds(1);
             winnedGameText.SetActive(false);
+            canvasisoff = true;
+            OnPlayerWin?.Invoke();
+            winTheGame._senora = true;
+
             
         }else{
             OnPlayerLose?.Invoke();
             losedgameText.SetActive(true);
             yield return new WaitForSeconds(1);
             losedgameText.SetActive(false);
+            canvasisoff = true;
+            OnPlayerLose?.Invoke();
         }
     }
     IEnumerator OnGameEnd(){
+        yield return new WaitUntil(()=>RestartGame());
         startGame = false;
         timer.start = false;
         timer.gameObject.SetActive(false);
-        mainWindow.SetActive(false);
         playerMovement.enabled = true;
-        yield return new WaitForSeconds(1);
-        StopAllCoroutines();
+        StartCoroutine(WinOrLoseCanvas(win));
+        yield return new WaitUntil(()=> canvasisoff);
+        timer.RestarTimer();
+        mainWindow.SetActive(false);
     }
     IEnumerator StartPopUpWindowGame()
     {
@@ -93,13 +107,28 @@ public class MiniJuegoSeñora : MonoBehaviour
         mainWindow.SetActive(true);
         for(int i = 0; i < popupWindowgroup.transform.childCount;i++)
         {
-
+            if(gameEnded)break;
             popUps[i].GetComponent<PopUpWindow>().ShowWindow();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(timeBetweenPopUps);
         }
-        yield return new WaitUntil(()=> popUps.All(popup => popup.GetComponent<PopUpWindow>().WindowsIsClosed));
-        win = true;
-        finishedpopingout = true;
+        if(!gameEnded)
+        {
+            yield return new WaitUntil(()=> popUps.All(popup => popup.GetComponent<PopUpWindow>().WindowsIsClosed));
+            win = true;
+            finishedpopingout = true;
+        }
 
+    }
+    bool RestartGame()
+    {
+        for(int i = 0; i< popupWindowgroup.transform.childCount;i++)
+        {
+            if(popUps[i].activeInHierarchy)
+            {
+                popUps[i].GetComponent<PopUpWindow>().RestartGame();
+                popUps[i].gameObject.SetActive(false);
+            }
+        }
+        return true;
     }
 }

@@ -143,7 +143,6 @@ public class NPCDialogues : MonoBehaviour
         dialogueBoxCanvas.gameObject?.SetActive(false);
         npcImage.gameObject.SetActive(true);
         spaceBarImage.gameObject.SetActive(true);
-        Debug.Log("Acabo el dialogo");
         OnDialgoueEnd?.Invoke();
         if (missionWasRejected)
         {

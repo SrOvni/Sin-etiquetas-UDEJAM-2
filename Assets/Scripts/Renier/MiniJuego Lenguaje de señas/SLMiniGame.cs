@@ -30,6 +30,7 @@ public class SLMiniGame : MonoBehaviour
     [SerializeField] float timeToTurnOffWinOrLoseCanvas;
     [SerializeField] GameObject instructions;
     bool canvasTurnOff = false;
+    [SerializeField] WinTheGame winTheGame;
     bool entendioInstrucciones = false;
     public void EntendioInstrucciones()
     {
@@ -37,7 +38,6 @@ public class SLMiniGame : MonoBehaviour
     }
     private void Start() {
         
-
 
     }
     
@@ -47,7 +47,6 @@ public class SLMiniGame : MonoBehaviour
         {
             StartCoroutine(StartGame());
         }else{
-            WinGame?.Invoke();
             gameObject.SetActive(false);
             return;
         }
@@ -59,7 +58,8 @@ public class SLMiniGame : MonoBehaviour
         {
             if(CorrectPositions())
             {
-                //correctPosition
+                winTheGame._sordo = true;
+                WinGame?.Invoke();
                 playerWin = true;
             }else{
                 //Incorrect positions;
