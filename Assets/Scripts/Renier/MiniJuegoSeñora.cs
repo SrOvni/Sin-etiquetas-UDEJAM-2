@@ -40,7 +40,9 @@ public class MiniJuegoSeñora : MonoBehaviour
 
     public void StartGame()
     {
-        if(win)return;
+        if(win){
+            OnPlayerWin?.Invoke();
+        }
         startGame = true;
         timer.start = true;
         StartCoroutine(StartPopUpWindowGame());
