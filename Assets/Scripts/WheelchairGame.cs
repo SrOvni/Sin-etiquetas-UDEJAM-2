@@ -46,6 +46,8 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] WinTheGame _win;
 
+    [SerializeField] private MovementPlayer _playerMovement;
+
 
     [Header("Animation")]
 
@@ -68,6 +70,7 @@ public class WheelchairGame : MonoBehaviour
     {
         if( _gameIsStarted)
         {
+            _playerMovement.DontMovePlayer();
             _timer.start = true;
             DecrementValue();
             _slider.value = _currentValue;
@@ -82,6 +85,7 @@ public class WheelchairGame : MonoBehaviour
             _currentValue = 0;
             _slider.value = _currentValue;
             _dialogueInteractions.Movement.enabled = true;
+            _playerMovement.CantMovePlayer();
             _canvasGame.SetActive(false);
             OnRestarGame.Invoke();
             LoseGame();
