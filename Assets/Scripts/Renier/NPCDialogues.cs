@@ -153,7 +153,8 @@ public class NPCDialogues : MonoBehaviour
             npcImage.DOMoveX(npcInitialImagePosition.position.x,1f);
             imageTarget = protaImageTargetPosition.transform;
             dialogueBoxTarget = protaDialogueBoxTargetPosition.transform;
-            dialogueBoxPosition.DOMoveX(dialogueBoxTarget.position.x,1f).onComplete = AnimationFinished;
+            
+            dialogueBoxPosition.DOMove(dialogueBoxTarget.position,1f).onComplete = AnimationFinished;
             protaImage.DOMoveX(imageTarget.position.x, 1f);
         }else{
             if(index > 0)
