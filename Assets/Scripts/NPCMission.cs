@@ -16,8 +16,22 @@ public class NPCMission : MonoBehaviour
 
     public void StartMission()
     {
-        _missionIsStarted = true;
-        OnStartMission.Invoke();
+        if (!_theMissionIsCompleted)
+        {
+            if (_missionIsStarted)
+            {
+                OnDontHaveItems.Invoke();
+            }
+            else
+            {
+                _missionIsStarted = true;
+                OnStartMission.Invoke();
+            }          
+        }
+        else
+        {
+            OnCompleteMision.Invoke();
+        }
     }
 
     public void DontHaveItemMission()

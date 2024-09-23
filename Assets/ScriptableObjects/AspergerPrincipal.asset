@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: AspergerPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - Hola te invito a la fiesta
+  - Esta bien, pero busca esto
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
-  playerDecisions: []
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
+  playerDecisions:
+  - desicion1: si
+    desicion2: no
