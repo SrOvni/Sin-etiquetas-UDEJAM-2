@@ -18,6 +18,8 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] private float _decrementValueSpeed = 10;
 
+    [SerializeField] DialogueInteractions _dialogueInteractions;
+
     [SerializeField] private Timer _timer;
 
     [SerializeField] private GameObject _canvasGame;
@@ -64,6 +66,7 @@ public class WheelchairGame : MonoBehaviour
             _timer.start = true;
             DecrementValue();
             _slider.value = _currentValue;
+            _dialogueInteractions.Movement.enabled = false;
         }
 
         if(_timer.CurrentTime <= 0f && _gameIsStarted)
@@ -109,7 +112,8 @@ public class WheelchairGame : MonoBehaviour
     {
         StartCoroutine(CanvasWinAnimation());
         _wheelChairGameIsCompleted =true;
-        OnCompleteGame.Invoke();       
+        OnCompleteGame.Invoke();
+        _dialogueInteractions.Movement.enabled = true;
     }
 
     public void StartGame()
@@ -130,6 +134,7 @@ public class WheelchairGame : MonoBehaviour
         _timer.start = false;
         _currentValue = 0;
         _slider.value = _currentValue;
+        _dialogueInteractions.Movement.enabled = true;
         _sliderCanvas.SetActive(false);      
     }
 
