@@ -38,9 +38,12 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] public UnityEvent OnPreesKey;
 
+    [SerializeField] public UnityEvent OnStartGame;
+
     [SerializeField] public UnityEvent OnCompleteGame;
 
     [SerializeField] public UnityEvent OnRestarGame;
+
 
     [Header("Animation")]
 
@@ -66,7 +69,7 @@ public class WheelchairGame : MonoBehaviour
             _timer.start = true;
             DecrementValue();
             _slider.value = _currentValue;
-            _dialogueInteractions.Movement.enabled = false;
+            _dialogueInteractions.Movement.enabled = false;           
         }
 
         if(_timer.CurrentTime <= 0f && _gameIsStarted)
@@ -119,6 +122,7 @@ public class WheelchairGame : MonoBehaviour
     public void StartGame()
     {      
         _gameIsStarted = true;
+        OnStartGame.Invoke();
         _canvasGame.SetActive(true);      
     }
 
