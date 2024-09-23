@@ -45,6 +45,8 @@ public class NPCDialogues : MonoBehaviour
     bool animationFinished = false;
     [SerializeField] UnityEvent OnDialogueStart;
     [SerializeField] UnityEvent OnDialgoueEnd;
+    [SerializeField] UnityEvent OnMissionRejection;
+    [SerializeField] UnityEvent OnAcceptMission;
     public bool playerTakesDesicion {get;set;}
     public bool missionWasRejected {get;set;}
     [SerializeField] Button takeMissionButton;
@@ -110,6 +112,8 @@ public class NPCDialogues : MonoBehaviour
                     TakeDecision();
                     yield return new WaitUntil(()=> playerTakesDesicion);
                     HideDecisionButton();
+                }else{
+                    missionWasRejected = false;
                 }
                 if (missionWasRejected)
                 {
@@ -143,7 +147,10 @@ public class NPCDialogues : MonoBehaviour
         OnDialgoueEnd?.Invoke();
         if (missionWasRejected)
         {
+            OnMissionRejection?.Invoke();
             missionWasRejected = false;
+        }else{
+            OnAcceptMission?.Invoke();
         }
     }
     void PlayDialogueAnimation()
