@@ -19,7 +19,6 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] private Transform[] randomPosition;
     public Transform[] RandomPositions{get{return randomPosition;}set{randomPosition = value;}}
     [SerializeField] private bool startGame = false;
-    public bool StartGame{get{return startGame;}set{startGame = value;} }
     [SerializeField] private int requiredClicksPerPopUp = 1;
     public int RequiredClicksPerPopUp{get{return requiredClicksPerPopUp;}set{requiredClicksPerPopUp = value;}}
     [SerializeField] private  TextMeshProUGUI timerText;
@@ -39,23 +38,25 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] bool waiting = true;
     bool finishedpopingout = false;
 
-    private void Start() {
+    public void StartGame()
+    {
+        if(win){
+            OnPlayerWin?.Invoke();
+            return;
+        }
+        startGame = true;
+        timer.start = true;
         StartCoroutine(StartPopUpWindowGame());
-        Debug.Log("Corrutina iniciada");
-        timer.CurrentTime = timeToWin;
-        timer.time = timeToWin;
     }
-
     private void Update() {
     if (startGame)
     {
-        waiting = false;
-        timer.start = true;
-
         if (timer.CurrentTime <= 0|| finishedpopingout)
         {
             timer.start = false;
             startGame = false;
+            playerMovement.enabled = false;
+            timer.gameObject.SetActive(true);
             StartCoroutine(WinOrLoseCanvas(win));
         }
     }
@@ -79,12 +80,6 @@ public class MiniJuegoSeñora : MonoBehaviour
         }
         OnGameEnd();
     }
-    void OnGameStart()
-    {
-        playerMovement.enabled = false;
-        timer.gameObject.SetActive(true);
-        //Falta quitar velocity de rigidbody
-    }
     void OnGameEnd(){
         timer.gameObject.SetActive(false);
         mainWindow.SetActive(false);
@@ -95,8 +90,6 @@ public class MiniJuegoSeñora : MonoBehaviour
     {
         yield return new WaitUntil(()=> startGame);
         mainWindow.SetActive(true);
-        Debug.Log("Game Started");
-        OnGameStart();
         for(int i = 0; i < popupWindowgroup.transform.childCount;i++)
         {
 

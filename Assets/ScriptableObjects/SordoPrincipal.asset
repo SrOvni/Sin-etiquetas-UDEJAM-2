@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SordoPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - Hola
+  - ...
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
   playerDecisions: []
