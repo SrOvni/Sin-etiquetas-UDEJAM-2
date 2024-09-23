@@ -44,6 +44,8 @@ public class WheelchairGame : MonoBehaviour
 
     [SerializeField] public UnityEvent OnRestarGame;
 
+    [SerializeField] WinTheGame _win;
+
 
     [Header("Animation")]
 
@@ -162,6 +164,7 @@ public class WheelchairGame : MonoBehaviour
                 _slider.value = _currentValue;
                 _dialogueInteractions.Movement.enabled = true;
                 _canvasGame.SetActive(false);
+                _win._silla = true;
                 OnCompletedGame();
             }
         }                
