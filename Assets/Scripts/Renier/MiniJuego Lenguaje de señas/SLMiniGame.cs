@@ -28,24 +28,23 @@ public class SLMiniGame : MonoBehaviour
     [SerializeField] UnityEvent OnComplete;
     [SerializeField] bool cartasOrdenadas;
     [SerializeField] float timeToTurnOffWinOrLoseCanvas;
+    [SerializeField] GameObject instructions;
     bool canvasTurnOff = false;
+    bool entendioInstrucciones = false;
+    public void EntendioInstrucciones()
+    {
+        entendioInstrucciones = true;
+    }
     private void Start() {
         
 
 
     }
+    
     public void InitializeGame()
     {
         if(!playerWin)
         {
-            canvasTurnOff = false;
-            OrdenarPosiciones();
-            movement.DontMovePlayer();
-            positions = GetPositions(groupOfPosition);
-            words = GetPositions(groupWithWords);
-            availablePosition = new List<bool>(positions.Count);
-            availablePositionCount = positions.Count;
-            startGame = true;
             StartCoroutine(StartGame());
         }else{
             WinGame?.Invoke();
@@ -60,8 +59,10 @@ public class SLMiniGame : MonoBehaviour
         {
             if(CorrectPositions())
             {
+                //correctPosition
                 playerWin = true;
             }else{
+                //Incorrect positions;
                 StartCoroutine(ReordenarCartas(secondsForCardToReorder));
             }
         }
@@ -88,6 +89,7 @@ IEnumerator CloseCanvasLose()
 }
 IEnumerator EndGame()
 {
+    entendioInstrucciones = false;
     if(playerWin)
     {
         StartCoroutine(CloseCanvasWin());
@@ -142,6 +144,17 @@ IEnumerator EndGame()
     }
     IEnumerator StartGame()
     {
+            instructions.SetActive(true);
+            yield return new WaitUntil(()=> entendioInstrucciones);
+            instructions.SetActive(false);
+            canvasTurnOff = false;
+            movement.DontMovePlayer();
+            positions = GetPositions(groupOfPosition);
+            words = GetPositions(groupWithWords);
+            availablePosition = new List<bool>(positions.Count);
+            availablePositionCount = positions.Count;
+            OrdenarPosiciones();
+            startGame = true;
         yield return new WaitUntil(()=>startGame);
         timer.start = true;
         yield return new WaitUntil(()=>playerWin);

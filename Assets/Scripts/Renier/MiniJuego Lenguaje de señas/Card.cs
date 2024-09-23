@@ -44,6 +44,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void RegresarCarta()
     {
+        canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = initialPosition;
     }
     private void OnTriggerEnter2D(Collider2D other) {

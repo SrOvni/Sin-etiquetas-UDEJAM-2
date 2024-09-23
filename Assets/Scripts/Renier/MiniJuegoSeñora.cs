@@ -37,6 +37,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] UnityEvent OnPlayerLose;
     [SerializeField] bool waiting = true;
     bool finishedpopingout = false;
+    private float TimeToTurnOffCanvas;
 
     public void StartGame()
     {
@@ -44,8 +45,10 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerWin?.Invoke();
             return;
         }
-        startGame = true;
+        playerMovement.CantMovePlayer();
+        timer.gameObject.SetActive(true);
         timer.start = true;
+        startGame = true;
         StartCoroutine(StartPopUpWindowGame());
     }
     private void Update() {
@@ -53,11 +56,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     {
         if (timer.CurrentTime <= 0|| finishedpopingout)
         {
-            timer.start = false;
-            startGame = false;
-            playerMovement.enabled = false;
-            timer.gameObject.SetActive(true);
-            StartCoroutine(WinOrLoseCanvas(win));
+            StartCoroutine(OnGameEnd());
         }
     }
 }
@@ -78,12 +77,14 @@ public class MiniJuegoSeñora : MonoBehaviour
             yield return new WaitForSeconds(1);
             losedgameText.SetActive(false);
         }
-        OnGameEnd();
     }
-    void OnGameEnd(){
+    IEnumerator OnGameEnd(){
+        startGame = false;
+        timer.start = false;
         timer.gameObject.SetActive(false);
         mainWindow.SetActive(false);
         playerMovement.enabled = true;
+        yield return new WaitForSeconds(1);
         StopAllCoroutines();
     }
     IEnumerator StartPopUpWindowGame()
