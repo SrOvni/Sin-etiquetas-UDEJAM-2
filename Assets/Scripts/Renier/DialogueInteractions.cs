@@ -46,7 +46,7 @@ public class DialogueInteractions : MonoBehaviour
                 hasInteracted = true; //Volver falso después de la interacción para poder volver a interactuar con los NPCs
                 component.PlayDialogueQuest();
             }
-        }   
+        }
     }
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.TryGetComponent(out NPCDialogues component))
