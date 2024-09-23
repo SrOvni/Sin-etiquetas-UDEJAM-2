@@ -77,22 +77,15 @@ public class WheelchairGame : MonoBehaviour
             _gameIsStarted = false;
             _timer.start = false;
             _timer.RestarTimer();
-            WinOrLoseGame(false);
+            _currentValue = 0;
+            _slider.value = _currentValue;
+            _dialogueInteractions.Movement.enabled = true;
+            _canvasGame.SetActive(false);
+            OnRestarGame.Invoke();
+            LoseGame();
         }
 
         UpdateSliderColor();
-    }
-
-    void WinOrLoseGame(bool result)
-    {
-        if (result)
-        {
-            OnCompletedGame();          
-        }
-        else
-        {
-            LoseGame();          
-        }
     }
 
     void UpdateSliderColor()
@@ -113,17 +106,24 @@ public class WheelchairGame : MonoBehaviour
 
     public void OnCompletedGame()
     {
+
         StartCoroutine(CanvasWinAnimation());
         _wheelChairGameIsCompleted =true;
         OnCompleteGame.Invoke();
-        _dialogueInteractions.Movement.enabled = true;
     }
 
     public void StartGame()
-    {      
-        _gameIsStarted = true;
-        OnStartGame.Invoke();
-        _canvasGame.SetActive(true);      
+    {
+        if (!_wheelChairGameIsCompleted)
+        {
+            _gameIsStarted = true;
+            OnStartGame.Invoke();
+            _canvasGame.SetActive(true);
+        }
+        else
+        {
+            OnCompleteGame.Invoke();
+        }
     }
 
     public void LoseGame()
@@ -132,14 +132,7 @@ public class WheelchairGame : MonoBehaviour
     }
     public void RestartWheelChairGame()
     {
-        OnRestarGame.Invoke();
-        _gameIsStarted = false;
-        _timer.CurrentTime = 0;
-        _timer.start = false;
-        _currentValue = 0;
-        _slider.value = _currentValue;
-        _dialogueInteractions.Movement.enabled = true;
-        _sliderCanvas.SetActive(false);      
+        
     }
 
     private void DecrementValue()
@@ -163,7 +156,13 @@ public class WheelchairGame : MonoBehaviour
             if (_currentValue >= _totalAmountValue)
             {
                 _gameIsStarted = false;
-                WinOrLoseGame(true);
+                _timer.start = false;
+                _timer.RestarTimer();
+                _currentValue = 0;
+                _slider.value = _currentValue;
+                _dialogueInteractions.Movement.enabled = true;
+                _canvasGame.SetActive(false);
+                OnCompletedGame();
             }
         }                
     }
@@ -188,16 +187,12 @@ public class WheelchairGame : MonoBehaviour
         _canvasLose.SetActive(true);
         yield return new WaitForSeconds(3);
         _canvasLose.SetActive(false);
-        _canvasGame.SetActive(false);
-        RestartWheelChairGame();
     }
 
     public IEnumerator CanvasWinAnimation()
     {
         _canvasWin.SetActive(true);
         yield return new WaitForSeconds(3);
-        _canvasWin.SetActive(false);
-        _canvasGame.SetActive(false);
-        RestartWheelChairGame();
+        _canvasWin.SetActive(false);      
     }
 }
