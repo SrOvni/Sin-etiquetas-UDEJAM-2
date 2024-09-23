@@ -18,7 +18,5 @@ MonoBehaviour:
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
   dialogueOrder: 0000000001000000
-  isPlayerDecision: 01
-  playerDecisions:
-  - desicion1: Claro
-    desicion2: No puedo
+  isPlayerDecision: 00
+  playerDecisions: []

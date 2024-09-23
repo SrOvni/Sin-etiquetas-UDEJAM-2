@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CordinadorFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - Muchas gracias
-  - Denadaaa
+  - Muchas gracias, te veo en la fiesta?
+  - Claro que siiii :)
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
   dialogueOrder: 0000000001000000

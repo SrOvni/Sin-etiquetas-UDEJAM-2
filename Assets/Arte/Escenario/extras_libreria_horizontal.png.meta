@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f7741f40139c764fa59c2ae12c2d54e
+guid: 35d01db4c3993924e849b6fd5b8cf13b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,12 +97,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mujer_mayor_respirando_0
+      name: extras_libreria_horizontal_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 0
-        width: 24
+        x: 0
+        y: 64
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,19 +111,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc484474b1d1c24f938c4cf75b5d25a
-      internalID: -942772722
+      spriteID: b99f655c397096a45b54b81a54975af2
+      internalID: 2054523152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mujer_mayor_respirando_1
+      name: extras_libreria_horizontal_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 0
-        width: 24
+        x: 32
+        y: 64
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -132,19 +132,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b84294aefb93a5c47aa984d45a981533
-      internalID: 1136143054
+      spriteID: 471eac05ccee1d445b85ebeeb407cda7
+      internalID: -350629550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mujer_mayor_respirando_2
+      name: extras_libreria_horizontal_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 0
-        width: 24
+        x: 64
+        y: 64
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34b8f898b835d0044afaf309844e1326
-      internalID: 191901104
+      spriteID: 2b173c40fda560e449b083784ba7fd19
+      internalID: 179577141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mujer_mayor_respirando_3
+      name: extras_libreria_horizontal_3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 0
-        width: 24
-        height: 31
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6acdc752d1ae98441beede7bb48b8d06
-      internalID: 2083230693
+      spriteID: e7e390b95853ba542ac2828483dfa9f0
+      internalID: -1318591783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: extras_libreria_horizontal_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6eee1c690df99f4d9629d083a6fda01
+      internalID: -259012134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: extras_libreria_horizontal_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d76a2b87df11184e8b1ddbe196c666b
+      internalID: 1447524480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: extras_libreria_horizontal_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cbbb867b693b5146bbc460d21e70e45
+      internalID: 592412089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: extras_libreria_horizontal_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cba688440f3522468606275ff67a34e
+      internalID: -211262350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: extras_libreria_horizontal_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4c177a883f1f4478dc04c306cbfb2a
+      internalID: -605493721
       vertices: []
       indices: 
       edges: []
@@ -191,10 +296,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mujer_mayor_respirando_0: -942772722
-      mujer_mayor_respirando_1: 1136143054
-      mujer_mayor_respirando_2: 191901104
-      mujer_mayor_respirando_3: 2083230693
+      extras_libreria_horizontal_0: 2054523152
+      extras_libreria_horizontal_1: -350629550
+      extras_libreria_horizontal_2: 179577141
+      extras_libreria_horizontal_3: -1318591783
+      extras_libreria_horizontal_4: -259012134
+      extras_libreria_horizontal_5: 1447524480
+      extras_libreria_horizontal_6: 592412089
+      extras_libreria_horizontal_7: -211262350
+      extras_libreria_horizontal_8: -605493721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
