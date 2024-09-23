@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CordinadorPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - "Hola Juan, se que es tu ultimo d\xEDa"
   - No hay dialogo
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar

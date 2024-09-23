@@ -27,6 +27,7 @@ public class SLMiniGame : MonoBehaviour
     [SerializeField] UnityEvent WinGame;
     [SerializeField] UnityEvent OnComplete;
     [SerializeField] bool cartasOrdenadas;
+    [SerializeField] float timeToTurnOffWinOrLoseCanvas;
     bool canvasTurnOff = false;
     private void Start() {
         
@@ -37,6 +38,7 @@ public class SLMiniGame : MonoBehaviour
     {
         if(!playerWin)
         {
+            canvasTurnOff = false;
             OrdenarPosiciones();
             movement.DontMovePlayer();
             positions = GetPositions(groupOfPosition);
@@ -99,10 +101,10 @@ IEnumerator EndGame()
     timer.start = false;
     timer.RestarTimer();
     startGame = false;
-    movement.CantMovePlayer();
     StartCoroutine(ReordenarCartas(secondsForCardToReorder));
     yield return new WaitUntil(()=>cartasOrdenadas);
     yield return new WaitUntil(()=> canvasTurnOff);
+    movement.CantMovePlayer();
     gameObject.SetActive(false);
 }
     private List<Transform> GetPositions(GameObject group)
