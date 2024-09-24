@@ -66,6 +66,12 @@ public class MovementPlayer : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+
+            if (_isWalking)
+            {
+                _isWalking = false;
+                OnStopWalk.Invoke();
+            }
         }
         UpdateAnimation();
 

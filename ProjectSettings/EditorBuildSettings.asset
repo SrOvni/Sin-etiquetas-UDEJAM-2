@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ofcial_Map.unity
     guid: b31538de9861b1e48a63dbde1cc81cf2
+  - enabled: 1
+    path: Assets/Scenes/FinalDance.unity
+    guid: eed1599edb34f9f40831e89b9574853c
   m_configObjects: {}

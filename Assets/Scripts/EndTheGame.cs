@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EndTheGame : MonoBehaviour
-{   
-    public IEnumerator StarEndTheGame()
+{
+    GameManager gameManager;
+    private void Start()
+    {
+        gameManager = GetComponent<GameManager>();
+        StartCoroutine(StarEndTheGame());
+    }
+    private IEnumerator StarEndTheGame()
     {
         yield return new WaitForSeconds(30f);
-        //Cargar Menu Principal
+        gameManager.ChangeSceneByName("MenuPrincipal");
     }
 }
