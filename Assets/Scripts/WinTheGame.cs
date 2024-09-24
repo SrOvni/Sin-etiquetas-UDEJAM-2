@@ -13,16 +13,29 @@ public class WinTheGame : MonoBehaviour
 
     [SerializeField] private UnityEvent OnWinTheGame;
 
+    GameManager _gameManager;
+
+    private void Start()
+    {
+        _gameManager = GetComponent<GameManager>();
+    }
     private void Update()
     {
        if(_senora && _ciega && _asperger && _sordo && _silla)
         {
-            WinGame();
+            StartCoroutine(StartDanceScene());
         }
     }
 
-    void WinGame()
+    IEnumerator StartDanceScene()
     {
         OnWinTheGame.Invoke();
+        _sordo = false;
+        _silla = false;
+        _asperger = false;
+        _senora = false;
+        _ciega = false;
+        yield return new WaitForSeconds(10f);
+        _gameManager.ChangeSceneByName("FinalDance");
     }
 }

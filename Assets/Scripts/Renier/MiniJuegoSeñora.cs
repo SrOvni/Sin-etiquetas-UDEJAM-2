@@ -47,19 +47,29 @@ public class MiniJuegoSeñora : MonoBehaviour
     private float TimeToTurnOffCanvas;
     private bool gameEnded = false;
     private bool animacionTerminada = false;
-
+    [SerializeField] GameObject comojugar;
+    [SerializeField] GameObject iconoMouse;
+    [SerializeField] GameObject targetPositionAnimation;
+    bool aniamciónTutorialTemrino = false;
+    public bool AnimacionTermino{get{return aniamciónTutorialTemrino;}set{aniamciónTutorialTemrino = value;}}
+    bool terminoTutorial;
+    [SerializeField] bool playTutorial = false;
+    private void Start() {
+    }
     public void StartGame()
     {
         if(win){
             OnPlayerWin?.Invoke();
             return;
         }
+        terminoTutorial = false;
+        aniamciónTutorialTemrino = false;
         botonPDFpresionado = false;
         animacionTerminada = false;
         gameEnded = false;
         playerMovement.CantMovePlayer();
         timer.gameObject.SetActive(true);
-        timer.start = true;
+        //timer.start = true;
         startGame = true;
         canvasisoff = false;
         StartCoroutine(StartPopUpWindowGame());
@@ -80,8 +90,9 @@ public class MiniJuegoSeñora : MonoBehaviour
 
         if (win)
         {
+            
             StartCoroutine(AnimaciónGuardarComo());
-            yield return new WaitUntil(() => animacionTerminada);
+            yield return new WaitUntil(()=> animacionTerminada);
             OnPlayerWin?.Invoke();
             winnedGameText.SetActive(true);
             yield return new WaitForSeconds(1);
@@ -99,7 +110,7 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerLose?.Invoke();
         }
     }
-    IEnumerator OnGameEnd(){       
+    IEnumerator OnGameEnd(){
         yield return new WaitUntil(()=>RestartGame());
         startGame = false;
         timer.start = false;
@@ -112,7 +123,12 @@ public class MiniJuegoSeñora : MonoBehaviour
     }
     IEnumerator StartPopUpWindowGame()
     {
+        if(playTutorial){
+            StartCoroutine(ComoJugar());
+        yield return new WaitUntil(()=> terminoTutorial);
+        }
         yield return new WaitUntil(()=> startGame);
+        timer.start = true;
         mainWindow.SetActive(true);
         for(int i = 0; i < popupWindowgroup.transform.childCount;i++)
         {
@@ -149,5 +165,16 @@ public class MiniJuegoSeñora : MonoBehaviour
         pdfOn.SetActive(true);
         animacionTerminada = true;
 
+    }
+    IEnumerator ComoJugar()
+    {
+        comojugar.SetActive(true);
+        iconoMouse.SetActive(true);
+        iconoMouse.transform.DOMove(targetPositionAnimation.transform.position,2).SetEase(Ease.InOutSine).SetLoops(2);
+        yield return new WaitUntil(()=> aniamciónTutorialTemrino);
+        iconoMouse.transform.DOKill();
+        comojugar.SetActive(false);
+        iconoMouse.SetActive(false);
+        terminoTutorial = true;
     }
 }

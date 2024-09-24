@@ -31,8 +31,15 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if(inPosition)
         {
+            availableSpot.HasTheCard = order;
+                AddCard?.Invoke();
             rectTransform.anchoredPosition = availableSpot.GetComponent<RectTransform>().anchoredPosition;
         }else{
+            Debug.Log("Out");
+            inPosition = false;
+            RemoveCard?.Invoke();
+            availableSpot.HasTheCard = -1;
+            availableSpot = null;
             rectTransform.anchoredPosition = initialPosition;
         }
         canvasGroup.blocksRaycasts = true;
@@ -54,21 +61,18 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             {
                 inPosition = true;
                 availableSpot = component;
-                availableSpot.HasTheCard = order;
-                AddCard?.Invoke();
-            }else{
-                inPosition = false;
+                
             }
         }
     }
     private void OnTriggerExit2D(Collider2D other) {
         if(other.GetComponent<AvailableSpot>())
         {
-           // Debug.Log("Out");
-            inPosition = false;
-            RemoveCard?.Invoke();
-            availableSpot.HasTheCard = -1;
-            availableSpot = null;
+            if(rectTransform.anchoredPosition == initialPosition && availableSpot is not null)
+            {
+                availableSpot.HasTheCard = -1;
+                availableSpot = null;
+            }
             
         }
     }
