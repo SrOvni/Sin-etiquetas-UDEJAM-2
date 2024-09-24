@@ -11,6 +11,7 @@ public class EndTheGame : MonoBehaviour
     private void Start()
     {
         gameManager = GetComponent<GameManager>();
+        StartCoroutine(StarEndTheGame());
     }
     public IEnumerator StarEndTheGame()
     {

@@ -314,6 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002024465}
+  - component: {fileID: 1002024466}
   m_Layer: 0
   m_Name: EndThe Game
   m_TagString: Untagged
@@ -336,6 +337,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002024466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002024464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52116da260bca424ba8a6efe98f0a987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicFinal:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1048822085
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,6 +5079,12 @@ MonoBehaviour:
   moveSpeed: 0.8
   smoothTime: 0.1
   _canMove: 1
+  OnWalk:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopWalk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &98902034743623473
 Transform:
   m_ObjectHideFlags: 0
@@ -9035,6 +9057,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _win: {fileID: 0}
+  _playerMovement: {fileID: 0}
   scaleUpSize: {x: 1.8, y: 1.8, z: 1}
   rotateAmount: 3
   animationDuration: 0.05
