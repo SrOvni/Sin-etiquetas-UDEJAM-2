@@ -768,6 +768,7 @@ MonoBehaviour:
   comojugar: {fileID: 354051047}
   iconoMouse: {fileID: 214057725}
   targetPositionAnimation: {fileID: 214057725}
+  playTutorial: 0
 --- !u!4 &72173947
 Transform:
   m_ObjectHideFlags: 0
@@ -5262,7 +5263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &354051048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17956,6 +17957,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider1: {fileID: 1133623303}
   collider2: {fileID: 47901621}
+  collider3: {fileID: 0}
+  collider4: {fileID: 0}
+  collider5: {fileID: 0}
   OnProcess:
     m_PersistentCalls:
       m_Calls:
@@ -30233,6 +30237,9 @@ MonoBehaviour:
   _silla: 0
   _asperger: 0
   _senora: 0
+  OnWinTheGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1894727181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30467,6 +30474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactClip: {fileID: 0}
   defaultBGM: {fileID: 0}
+  walk: {fileID: 0}
 --- !u!1 &1896533508
 GameObject:
   m_ObjectHideFlags: 0
@@ -39257,6 +39265,12 @@ MonoBehaviour:
   moveSpeed: 5
   smoothTime: 0.1
   _canMove: 1
+  OnWalk:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopWalk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &8581234654195785061
 CanvasRenderer:
   m_ObjectHideFlags: 0
