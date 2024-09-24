@@ -37,10 +37,16 @@ public class MiniJuegoSeñora : MonoBehaviour
     [SerializeField] UnityEvent OnPlayerLose;
     [SerializeField] bool waiting = true;
     [SerializeField] WinTheGame winTheGame;
+    [SerializeField] GameObject guardacomo;
+    [SerializeField] GameObject pdfOn;
+    [SerializeField] GameObject pdfOff;
+    private bool botonPDFpresionado = false;
+    public bool BotonPDFpresionado {get {return botonPDFpresionado;}set{botonPDFpresionado = value;}}
     bool canvasisoff;
     bool finishedpopingout = false;
     private float TimeToTurnOffCanvas;
     private bool gameEnded = false;
+    private bool animacionTerminada = false;
 
     public void StartGame()
     {
@@ -48,6 +54,8 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerWin?.Invoke();
             return;
         }
+        botonPDFpresionado = false;
+        animacionTerminada = false;
         gameEnded = false;
         playerMovement.CantMovePlayer();
         timer.gameObject.SetActive(true);
@@ -72,6 +80,7 @@ public class MiniJuegoSeñora : MonoBehaviour
 
         if (win)
         {
+            
             OnPlayerWin?.Invoke();
             winnedGameText.SetActive(true);
             yield return new WaitForSeconds(1);
@@ -91,6 +100,8 @@ public class MiniJuegoSeñora : MonoBehaviour
         }
     }
     IEnumerator OnGameEnd(){
+        StartCoroutine(AnimaciónGuardarComo());
+        yield return new WaitUntil(()=> animacionTerminada);
         yield return new WaitUntil(()=>RestartGame());
         startGame = false;
         timer.start = false;
@@ -130,5 +141,15 @@ public class MiniJuegoSeñora : MonoBehaviour
             }
         }
         return true;
+    }
+    IEnumerator AnimaciónGuardarComo()
+    {
+        guardacomo.SetActive(true);
+        yield return new WaitUntil(()=> botonPDFpresionado);
+        pdfOn.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        pdfOn.SetActive(true);
+        animacionTerminada = true;
+
     }
 }
