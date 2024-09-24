@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SillaDeRuedasPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - "Hola, \xBFPodr\xEDas ayudarme?, no puedo subir la rampa."
-  - "Claro, solo tengo que empujar \xBFCierto?"
+  - "Hola, \xBFPodr\xEDas ayudarme? quede atascado en este borde de aqui."
+  - "si claro, solo empujo, \xBFcierto?"
   - Sii
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: AspergerProceso
   m_EditorClassIdentifier: 
   dialogues:
-  - No lo encontre
-  - sigue buscando
+  - "\xBFLa tienes?"
+  - todavia no...
+  - ...
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

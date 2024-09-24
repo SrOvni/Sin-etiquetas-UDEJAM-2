@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: SordoPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - Hola
+  - "(Yo conozco a este chico, es sordo, lo sigo en ristagram, desde hace un tiempo,
+    empece a usar el lenguaje de se\xF1as por el, espero me sirva )Hola..."
+  - ...
+  - AH CIERTO, yo ya lo sabia, este perdon...ah otra vez... espero no lo tome mal...*nervios*
   - ...
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 00000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

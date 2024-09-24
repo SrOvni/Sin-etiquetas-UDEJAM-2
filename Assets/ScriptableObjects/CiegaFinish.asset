@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: CiegaFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - Te veo en la fiesta entonces? aqui tienes lo que necesitabas
-  - "claro, ah\xED estar\xE9"
+  - 'aqui estan, son los unicos audifonos que encontre. '
+  - gracias, de verdad gracias, casi se vuelven los terceros que pierdo este semestre.
+  - por cierto, sobre la fiesta
+  - a claro, cuenta conmigo, tengo clase hasta tarde, y libre de por medio, ire :)
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 00000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

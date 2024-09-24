@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CordinadorProceso
   m_EditorClassIdentifier: 
   dialogues:
-  - "\xBFC\xF3mo vas?"
-  - Aun no termino, pero no tardare mucho
-  - Muy bien
+  - "\xBFC\xF3mo vas?\xBFTan rapido eres?"
+  - Jeje... Todavia me faltan.
+  - 'Sigue asi, habla con mas personas, quiza ayudandolas un poco acepten ir. '
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
   dialogueOrder: 010000000000000001000000

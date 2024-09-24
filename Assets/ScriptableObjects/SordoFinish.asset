@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - "Nos vemos en la fiesta(En lenguaje de se\xF1as)"
-  - ...
+  - ... *asiente alegre*
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
   dialogueOrder: 0000000001000000

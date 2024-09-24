@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: AspergerPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - Hola te invito a la fiesta
-  - Esta bien, pero busca esto
+  - "Hola, \xBFEstas bien? luces un poco, alterado."
+  - Alterado, no, no lo estoy, solo... necesito silencio, vine a la biblio porque
+    se supone que es un lugar
+  - ' silecioncioso para concentrarse y estudiar, pero hay dema.. demasiado ruido. '
+  - Sin mencionar que se partieron por mitad mis audifonos, necesito, algo con que
+    repararlos, y todavia me quedan dos clases
+  - mmm... creo que habia cinta en algun lugar de la bilbioteca quiza pueda funcionar
+    para unnirlos temporalmente
+  - "ah, si ayudaria, la he usado antes, no se me habia ocurrido , \xBFpuedes traerlo?"
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 000000000100000001000000010000000000000001000000
   isPlayerDecision: 00
-  playerDecisions:
-  - desicion1: si
-    desicion2: no
+  playerDecisions: []

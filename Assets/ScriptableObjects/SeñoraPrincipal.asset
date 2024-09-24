@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: "Se\xF1oraPrincipal"
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
-  - No hay dialogo
+  - Hola buen...
+  - Ay mijo hola, tu eres el muchachito del servicio social, siempre que vengo te
+    veo, ayudame por favor
+  - ustedes los jovenes nacen con el chip integrado y le saben mover a todo de la
+    compu
+  - "mi hijo el otro d\xEDa le metio el paquete de woffioice a la lap, pero siempre
+    que queiro guarda en pdg, pdff, ay no se como se dice, me salen muchas cosas "
+  - ayudame por favor
+  - Claro, se guardar en PDF, no creo que sea dificil.
+  - 'Si te salen ventanitas, solo piocale a la equis hasta que se cierren, a veces
+    vuelven a salir muchas pero si se puede. '
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 00000000010000000100000001000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

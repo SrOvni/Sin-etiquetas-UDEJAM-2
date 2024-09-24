@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: AspergerFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - Ten, ven a la fiesta
-  - Claro que ire, muchas gracias
+  - Aqui esta, espero te sirva
+  - bien, gracias...
+  - "... \xBFNecesitas algo mas?"
+  - Ah si, si este, toma, una invitacion para la fiesta qwue habra en la tarde.
+  - Suena a mucho ruido... No prometo ir, pero lo pensare.
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 0000000001000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: "Se\xF1oraProceso"
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - Esta mas dificil de lo que parece, es importante tener un antivirus
+  - jeje, mi nieto siempre me dice que no le pique a nada, pero a veces son llamativos
+    las pantallitas que salen
+  - pero andale tu siguele, picale mas rapido y mas veces
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
+  dialogueOrder: 000000000100000001000000
   isPlayerDecision: 
   playerDecisions: []

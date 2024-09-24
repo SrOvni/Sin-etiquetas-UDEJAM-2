@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: "Se\xF1oraOnComplete"
   m_EditorClassIdentifier: 
   dialogues:
-  - Muchas gracias por ayudarme
-  - Muchas gracias por ayudarme
+  - ya ves que si podias
+  - le recomendaria mandarla a un tecnico, quiza sea lo mejor para su seguridad.
+  - al rato que vea a mi nieto le pido ayuda, es el tecnico de sower
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: "Espero que me puedas ayudar m\xE1s tarde"
   dialogueOrder: 0000000001000000

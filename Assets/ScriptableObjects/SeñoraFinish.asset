@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: "Se\xF1oraFinish"
   m_EditorClassIdentifier: 
   dialogues:
-  - "Nos vemos en la fiesta claro que s\xED"
-  - "Claro que s\xED"
+  - ya ves que si podias
+  - le recomendaria mandarla a un tecnico, quiza sea lo mejor para su seguridad.
+  - al rato que vea a mi nieto le pido ayuda, es el tecnico de sower
+  - por cierto, aqui una invitacion para la fiesta que habra hoy mismo por la tarde
+  - muchas gracias mijo, yo creo que ire un ratito a divertirne, jijiji
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 0100000000000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

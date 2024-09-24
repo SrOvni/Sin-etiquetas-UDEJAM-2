@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: CordinadorPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - Me puedes ayudar a traer gente a la fiesta
-  - No hay problema
-  - Gracias
+  - "Hola Alex, aprovechando que es tu ultimo d\xEDa de servicio social, necesito
+    que te encargues de algo"
+  - Hola... Claro, si es dentro de la biblioteca, lo hare.
+  - Excelente, por favor entrega esta 5 invitaciones, para la fiesta que habra en
+    la tarde.
+  - 5 invitaciones... hablar con gente... cla...ro
+  - 'Cuento contigo Alex :) '
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 010000000000000001000000
+  dialogueOrder: 0100000000000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

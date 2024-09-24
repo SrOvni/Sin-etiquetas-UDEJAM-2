@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: SillaDeRuedasFinish
   m_EditorClassIdentifier: 
   dialogues:
-  - Asiste a la fiesta del evento de la paz
-  - "Claro, muchas gracias, ah\xED estar\xE9"
+  - "Listooo,\xBF empuje muy fuerte?"
+  - nop, apenas lo senti
+  - "jeje, por cierto, me pidieron que repartiera las invitaciones de la fiesta que
+    habra hoy mismo, \xBFte gustaria ir?"
+  - "\xBFFiesta? claro, cuenta comigo"
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 00000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []

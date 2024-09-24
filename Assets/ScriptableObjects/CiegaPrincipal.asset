@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: CiegaPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - Hola, te gustaria ir a la fiesta de paz
-  - "Me gustar\xEDa, pero necesito entoncrar mi audifono, me ayudas a buscarlo="
+  - Hola, Soy Alex, estoy haciendo mi servicio social, y me pidieron que invitara
+    personas a la fiesta que habra hoy mismo, mas tarde
+  - a si, una fiesta... aja, gracias
+  - "(suena distraida, estara buscando algo)\xBF Perdiste algo?"
+  - per...di... ah si, perdi mis audifonos, son unos negros, siempre vengo a escuchar
+    audiolibros, pero cuando guardo mis cosas, olvido los audifonos
+  - "tu que estas en servicio, \xBFno los habras visto?"
+  - deja doy una vualta por la bibliotea, quiza los encuentre.
+  - te agradeceria.
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0000000001000000
+  dialogueOrder: 00000000010000000000000001000000010000000000000001000000
   isPlayerDecision: 00
   playerDecisions: []
