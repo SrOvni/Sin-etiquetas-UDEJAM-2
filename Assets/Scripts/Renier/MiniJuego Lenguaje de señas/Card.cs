@@ -39,13 +39,14 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 AddCard?.Invoke();
             rectTransform.anchoredPosition = availableSpot.GetComponent<RectTransform>().anchoredPosition;
         }else{
-            Debug.Log("Out");
             
             RemoveCard?.Invoke();
             if(availableSpot is not null)
             {
                 availableSpot.HasTheCard = -1;
                 availableSpot = null;
+                rectTransform.anchoredPosition = initialPosition;
+            }else{
                 rectTransform.anchoredPosition = initialPosition;
             }
         }
