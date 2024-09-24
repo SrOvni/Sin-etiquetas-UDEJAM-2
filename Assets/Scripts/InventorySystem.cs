@@ -56,7 +56,7 @@ public class InventorySystem : MonoBehaviour
             RectTransform rectTransform = newImage.GetComponent<RectTransform>();
             rectTransform.SetParent(panel.transform);  
             rectTransform.localScale = Vector3.one;    
-            rectTransform.sizeDelta = new Vector2(50, 50);  
+            rectTransform.sizeDelta = new Vector2(150, 150);  
         }
     }
 }

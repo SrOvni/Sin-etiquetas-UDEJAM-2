@@ -44,7 +44,6 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // Habilita el sistema de entrada
         if (playerinputs != null)
         {
             playerinputs.Enable();
@@ -57,7 +56,6 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // Deshabilita el sistema de entrada
         if (playerinputs != null)
         {
             playerinputs.Disable();
