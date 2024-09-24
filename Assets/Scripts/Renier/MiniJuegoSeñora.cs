@@ -53,6 +53,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     bool aniamciónTutorialTemrino = false;
     public bool AnimacionTermino{get{return aniamciónTutorialTemrino;}set{aniamciónTutorialTemrino = value;}}
     bool terminoTutorial;
+    [SerializeField] bool playANimation;
     private void Start() {
     }
     public void StartGame()
@@ -98,10 +99,9 @@ public class MiniJuegoSeñora : MonoBehaviour
             winnedGameText.SetActive(false);
             canvasisoff = true;
             OnPlayerWin?.Invoke();
-            winTheGame._senora = true;
-
-            
-        }else{
+            winTheGame._senora = true;           
+        }
+        else{
             OnPlayerLose?.Invoke();
             losedgameText.SetActive(true);
             yield return new WaitForSeconds(1);

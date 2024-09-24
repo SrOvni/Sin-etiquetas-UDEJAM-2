@@ -33,7 +33,7 @@ public class DialogueInteractions : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.TryGetComponent(out NPCDialogues component))
         {
-            Debug.Log("Script found");
+            //Debug.Log("Script found");
            component.SpaceBarImage.gameObject?.SetActive(true);
            component.ExclamationSign.gameObject.SetActive(false);
         }   

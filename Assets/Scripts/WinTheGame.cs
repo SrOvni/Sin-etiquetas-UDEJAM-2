@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WinTheGame : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class WinTheGame : MonoBehaviour
     [SerializeField] public bool _silla = false;
     [SerializeField] public bool _asperger = false;
     [SerializeField] public bool _senora = false;
+
+    [SerializeField] private UnityEvent OnWinTheGame;
 
     private void Update()
     {
@@ -20,6 +23,6 @@ public class WinTheGame : MonoBehaviour
 
     void WinGame()
     {
-        //Cargar nueva escena
+        OnWinTheGame.Invoke();
     }
 }
