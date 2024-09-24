@@ -53,7 +53,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     bool aniamciónTutorialTemrino = false;
     public bool AnimacionTermino{get{return aniamciónTutorialTemrino;}set{aniamciónTutorialTemrino = value;}}
     bool terminoTutorial;
-    [SerializeField] bool playANimation;
+    [SerializeField] bool playTutorial = false;
     private void Start() {
     }
     public void StartGame()
@@ -123,8 +123,10 @@ public class MiniJuegoSeñora : MonoBehaviour
     }
     IEnumerator StartPopUpWindowGame()
     {
-        StartCoroutine(ComoJugar());
+        if(playTutorial){
+            StartCoroutine(ComoJugar());
         yield return new WaitUntil(()=> terminoTutorial);
+        }
         yield return new WaitUntil(()=> startGame);
         timer.start = true;
         mainWindow.SetActive(true);
