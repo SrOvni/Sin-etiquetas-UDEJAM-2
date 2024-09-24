@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerInputs playerinputs;
 
-    public Vector2 MovementDirection {get; private set;}
+    public Vector2 MovementDirection {get;  set;}
     
     public bool Interact { get; private set;}
 

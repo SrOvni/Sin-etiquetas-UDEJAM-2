@@ -16,7 +16,7 @@ public class EndTheGame : MonoBehaviour
     public IEnumerator StarEndTheGame()
     {
         _musicFinal.Invoke();
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(15f);
         gameManager.ChangeSceneByName("MenuPrincipal");
     }
 }

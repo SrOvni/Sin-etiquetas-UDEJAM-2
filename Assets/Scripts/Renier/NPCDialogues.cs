@@ -83,6 +83,7 @@ public class NPCDialogues : MonoBehaviour
         
         index = 0;
         dialogueBoxText.text = string.Empty;
+        _inputs.MovementDirection = Vector2.zero;
         dialogueInteractions.Movement.rb.velocity = new Vector3(0, 0, 0);
         dialogueInteractions.Movement.enabled = false;
         missionWasRejected = false;
