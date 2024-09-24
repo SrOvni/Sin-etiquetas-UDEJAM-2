@@ -19,7 +19,7 @@ public class MovementPlayer : MonoBehaviour
 
     private InputManager _inputs;         
     private Vector2 currentVelocity;      
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Vector2 targetVelocity;
 
     [Header("Animaciones")]

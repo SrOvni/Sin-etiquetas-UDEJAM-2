@@ -18819,7 +18819,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1307749605}
   - component: {fileID: 1307749604}
-  - component: {fileID: 1307749603}
   - component: {fileID: 1307749602}
   - component: {fileID: 1307749601}
   - component: {fileID: 1307749607}
@@ -18878,21 +18877,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &1307749603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307749600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52116da260bca424ba8a6efe98f0a987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicFinal:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1307749604
 MonoBehaviour:
   m_ObjectHideFlags: 0
