@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogues:
   - Muchas gracias por ayudarme
+  - Muchas gracias por ayudarme
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: "Espero que me puedas ayudar m\xE1s tarde"
-  dialogueOrder: 01000000
-  isPlayerDecision: 01
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
   playerDecisions:
   - desicion1: "Tomar misi\xF3n"
     desicion2: Rechazar
