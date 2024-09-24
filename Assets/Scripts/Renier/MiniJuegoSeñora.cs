@@ -23,7 +23,7 @@ public class MiniJuegoSeñora : MonoBehaviour
     public int RequiredClicksPerPopUp{get{return requiredClicksPerPopUp;}set{requiredClicksPerPopUp = value;}}
     [SerializeField] private  TextMeshProUGUI timerText;
     [SerializeField] private Button closeButton;
-    [SerializeField] private float numberOfPopUps = 5;
+    [SerializeField] private float numberOfPopUps = 8;
     public float NumberOfPopUps{get{return numberOfPopUps;}set{numberOfPopUps = value;}}
     [SerializeField] private float timeBetweenPopUps = 1;
     [SerializeField] private float timeToWin = 10;
@@ -80,17 +80,17 @@ public class MiniJuegoSeñora : MonoBehaviour
 
         if (win)
         {
-            
+            StartCoroutine(AnimaciónGuardarComo());
+            yield return new WaitUntil(() => animacionTerminada);
             OnPlayerWin?.Invoke();
             winnedGameText.SetActive(true);
             yield return new WaitForSeconds(1);
             winnedGameText.SetActive(false);
             canvasisoff = true;
             OnPlayerWin?.Invoke();
-            winTheGame._senora = true;
-
-            
-        }else{
+            winTheGame._senora = true;           
+        }
+        else{
             OnPlayerLose?.Invoke();
             losedgameText.SetActive(true);
             yield return new WaitForSeconds(1);
@@ -99,9 +99,7 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerLose?.Invoke();
         }
     }
-    IEnumerator OnGameEnd(){
-        StartCoroutine(AnimaciónGuardarComo());
-        yield return new WaitUntil(()=> animacionTerminada);
+    IEnumerator OnGameEnd(){       
         yield return new WaitUntil(()=>RestartGame());
         startGame = false;
         timer.start = false;

@@ -7,10 +7,12 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     private AudioSource sfxSource;       
-    private AudioSource bgmSource;       
+    private AudioSource bgmSource;
+    private AudioSource waljSource;
 
     public AudioClip interactClip;
-    public AudioClip defaultBGM;         
+    public AudioClip defaultBGM;
+    public AudioClip walk;
 
     private void Awake()
     {
@@ -46,6 +48,19 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayWalk()
+    {
+        waljSource.clip = walk;
+        waljSource.Play();
+        waljSource.loop = true;
+    }
+
+    public void StopWalk()
+    {
+        sfxSource.Stop();
+        sfxSource.loop = false;
+    }
+
     public void PlayBackgroundMusic(AudioClip newBGM)
     {
         if (bgmSource.isPlaying)
@@ -56,7 +71,8 @@ public class AudioManager : MonoBehaviour
         if (newBGM != null)
         {
             bgmSource.clip = newBGM;    
-            bgmSource.loop = true;      
+            bgmSource.loop = true;
+            bgmSource.volume = 0.1f;
             bgmSource.Play();           
         }
     }
