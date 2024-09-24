@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class WinTheGame : MonoBehaviour
+{
+    [SerializeField] public bool _sordo = false;
+    [SerializeField] public bool _ciega = false;
+    [SerializeField] public bool _silla = false;
+    [SerializeField] public bool _asperger = false;
+    [SerializeField] public bool _senora = false;
+
+    [SerializeField] private UnityEvent OnWinTheGame;
+
+    private void Update()
+    {
+       if(_senora && _ciega && _asperger && _sordo && _silla)
+        {
+            WinGame();
+        }
+    }
+
+    void WinGame()
+    {
+        OnWinTheGame.Invoke();
+    }
+}

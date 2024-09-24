@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: CordinadorPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - Me puedes ayudar a traer gente a la fiesta
+  - No hay problema
+  - Gracias
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 010000000000000001000000
+  isPlayerDecision: 00
   playerDecisions: []

@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class NPCMission : MonoBehaviour
 {
+    enum Type { asperger, ciega};
+    [SerializeField]  private Type _currentNPC;
+
     [SerializeField] public bool _theMissionIsCompleted = false;
     [SerializeField] public bool _missionIsStarted = false;
     [SerializeField] private InventoryItem _itemsToSearch;
@@ -14,10 +17,26 @@ public class NPCMission : MonoBehaviour
     [SerializeField] public UnityEvent OnDontHaveItems;
     [SerializeField] public UnityEvent OnStartMission;
 
+    [SerializeField] WinTheGame _win;
+
     public void StartMission()
     {
-        _missionIsStarted = true;
-        OnStartMission.Invoke();
+        if (!_theMissionIsCompleted)
+        {
+            if (_missionIsStarted)
+            {
+                OnDontHaveItems.Invoke();
+            }
+            else
+            {
+                _missionIsStarted = true;
+                OnStartMission.Invoke();
+            }          
+        }
+        else
+        {
+            OnCompleteMision.Invoke();
+        }
     }
 
     public void DontHaveItemMission()
@@ -46,6 +65,14 @@ public class NPCMission : MonoBehaviour
                     if (_playerInventory._inventoryItems[i] == _itemsToSearch)
                     {
                         CompletedMision();
+                        if(_currentNPC == Type.asperger)
+                        {
+                            _win._asperger = true;
+                        }
+                        else if(_currentNPC == Type.ciega)
+                        {
+                            _win._ciega = true;
+                        }
                         _playerInventory.RemoveItemByName(_itemsToSearch);
                     }
                     else

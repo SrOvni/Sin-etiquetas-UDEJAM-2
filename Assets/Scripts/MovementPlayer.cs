@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class MovementPlayer : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MovementPlayer : MonoBehaviour
     public float moveSpeed = 5f;          
     public float smoothTime = 0.1f;
     public bool _canMove = true;
+    private bool _isWalking = false;
 
     private InputManager _inputs;         
     private Vector2 currentVelocity;      
@@ -25,6 +27,8 @@ public class MovementPlayer : MonoBehaviour
 
     [Header("Referencias")]
     InventorySystem _inventorySystem;
+    [SerializeField] private UnityEvent OnWalk;
+    [SerializeField] private UnityEvent OnStopWalk;
 
     private void Awake()
     {
@@ -36,15 +40,32 @@ public class MovementPlayer : MonoBehaviour
 
     private void Update()
     {
-
-        if (_inputs.MovementDirection.magnitude >= 0.1f )
+        if (_canMove)
         {
-            targetVelocity = _inputs.MovementDirection * moveSpeed;
-            rb.velocity = targetVelocity;           
+            if (_inputs.MovementDirection.magnitude >= 0.1f)
+            {
+                targetVelocity = _inputs.MovementDirection * moveSpeed;
+                rb.velocity = targetVelocity;
+
+                if (!_isWalking)
+                {
+                    _isWalking = true;
+                    OnWalk.Invoke();
+                }
+            }
+            else
+            {
+                rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref currentVelocity, smoothTime);
+                if (_isWalking)
+                {
+                    _isWalking = false;
+                    OnStopWalk.Invoke();
+                }
+            }
         }
         else
         {
-            rb.velocity = Vector2.SmoothDamp(rb.velocity, Vector2.zero, ref currentVelocity, smoothTime);         
+            rb.velocity = Vector2.zero;
         }
         UpdateAnimation();
 
@@ -81,6 +102,15 @@ public class MovementPlayer : MonoBehaviour
         }                   
     }
 
+    public void DontMovePlayer()
+    {
+        _canMove = false;
+    }
+
+    public void CantMovePlayer()
+    {
+        _canMove = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<InventoryItem>() != null)

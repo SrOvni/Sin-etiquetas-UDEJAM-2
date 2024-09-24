@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: CordinadorProceso
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - "\xBFC\xF3mo vas?"
+  - Aun no termino, pero no tardare mucho
+  - Muy bien
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 010000000000000001000000
+  isPlayerDecision: 00
   playerDecisions: []

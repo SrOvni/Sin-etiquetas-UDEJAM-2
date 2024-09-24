@@ -44,6 +44,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void RegresarCarta()
     {
+        canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = initialPosition;
     }
     private void OnTriggerEnter2D(Collider2D other) {
@@ -63,7 +64,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private void OnTriggerExit2D(Collider2D other) {
         if(other.GetComponent<AvailableSpot>())
         {
-            Debug.Log("Out");
+           // Debug.Log("Out");
             inPosition = false;
             RemoveCard?.Invoke();
             availableSpot.HasTheCard = -1;

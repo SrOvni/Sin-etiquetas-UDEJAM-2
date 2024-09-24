@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: CiegaPrincipal
   m_EditorClassIdentifier: 
   dialogues:
-  - hola
-  - adios
-  - fdsfdshg
+  - Hola, te gustaria ir a la fiesta de paz
+  - "Me gustar\xEDa, pero necesito entoncrar mi audifono, me ayudas a buscarlo="
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 010000000000000001000000
-  isPlayerDecision: 01
-  playerDecisions:
-  - desicion1: Claro
-    desicion2: No puedo
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
+  playerDecisions: []

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CiegaProceso
   m_EditorClassIdentifier: 
   dialogues:
-  - No tienes lo que te pedi?
-  - Nop
+  - No encontre lo que buscabas
+  - Vuelve a buscarlo
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 0100000000000000
+  dialogueOrder: 0000000001000000
   isPlayerDecision: 00
   playerDecisions: []

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: SordoProceso
   m_EditorClassIdentifier: 
   dialogues:
-  - No hay dialogo
+  - "Mi lenguaje de se\xF1as esta oxidado, lo siento"
+  - No te preocupes, intentalo otra vez
   protaRejectionLine: No puedo ahora, lo siento
   npcsRejectionLine: Espero que me puedas ayudar
-  dialogueOrder: 
-  isPlayerDecision: 
+  dialogueOrder: 0000000001000000
+  isPlayerDecision: 00
   playerDecisions: []

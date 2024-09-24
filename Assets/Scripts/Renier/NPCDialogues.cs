@@ -45,6 +45,8 @@ public class NPCDialogues : MonoBehaviour
     bool animationFinished = false;
     [SerializeField] UnityEvent OnDialogueStart;
     [SerializeField] UnityEvent OnDialgoueEnd;
+    [SerializeField] UnityEvent OnMissionRejection;
+    [SerializeField] UnityEvent OnAcceptMission;
     public bool playerTakesDesicion {get;set;}
     public bool missionWasRejected {get;set;}
     [SerializeField] Button takeMissionButton;
@@ -110,6 +112,8 @@ public class NPCDialogues : MonoBehaviour
                     TakeDecision();
                     yield return new WaitUntil(()=> playerTakesDesicion);
                     HideDecisionButton();
+                }else{
+                    missionWasRejected = false;
                 }
                 if (missionWasRejected)
                 {
@@ -139,11 +143,14 @@ public class NPCDialogues : MonoBehaviour
         dialogueBoxCanvas.gameObject?.SetActive(false);
         npcImage.gameObject.SetActive(true);
         spaceBarImage.gameObject.SetActive(true);
-        Debug.Log("Acabo el dialogo");
+        //Debug.Log("Acabo el dialogo");
         OnDialgoueEnd?.Invoke();
         if (missionWasRejected)
         {
+            OnMissionRejection?.Invoke();
             missionWasRejected = false;
+        }else{
+            OnAcceptMission?.Invoke();
         }
     }
     void PlayDialogueAnimation()
@@ -153,7 +160,6 @@ public class NPCDialogues : MonoBehaviour
             npcImage.DOMoveX(npcInitialImagePosition.position.x,1f);
             imageTarget = protaImageTargetPosition.transform;
             dialogueBoxTarget = protaDialogueBoxTargetPosition.transform;
-            
             dialogueBoxPosition.DOMove(dialogueBoxTarget.position,1f).onComplete = AnimationFinished;
             protaImage.DOMoveX(imageTarget.position.x, 1f);
         }else{
@@ -180,7 +186,7 @@ public class NPCDialogues : MonoBehaviour
       {
         animationFinished = true;
         animate = false;
-        Debug.Log("Animation finished");
+        //Debug.Log("Animation finished");
     }
     void EndDialogueAnimation()
     {
