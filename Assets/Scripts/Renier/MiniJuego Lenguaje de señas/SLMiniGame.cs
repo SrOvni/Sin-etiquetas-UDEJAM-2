@@ -50,6 +50,7 @@ public class SLMiniGame : MonoBehaviour
             OnGameStart?.Invoke();
             StartCoroutine(StartGame());
         }else{
+            OnGameEnd?.Invoke();
             gameObject.SetActive(false);
             return;
         }
