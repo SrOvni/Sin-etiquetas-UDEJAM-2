@@ -23,7 +23,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnDrag(PointerEventData eventData)
     {
-        
+        if(!inPosition && availableSpot is not null)
+        {
+            availableSpot.HasTheCard = -1;
+                availableSpot = null;
+        }
         rectTransform.anchoredPosition += eventData.delta;
     }
 
@@ -36,17 +40,21 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             rectTransform.anchoredPosition = availableSpot.GetComponent<RectTransform>().anchoredPosition;
         }else{
             Debug.Log("Out");
-            inPosition = false;
+            
             RemoveCard?.Invoke();
-            availableSpot.HasTheCard = -1;
-            availableSpot = null;
-            rectTransform.anchoredPosition = initialPosition;
+            if(availableSpot is not null)
+            {
+                availableSpot.HasTheCard = -1;
+                availableSpot = null;
+                rectTransform.anchoredPosition = initialPosition;
+            }
         }
         canvasGroup.blocksRaycasts = true;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        
         canvasGroup.blocksRaycasts = false;
     }
     public void RegresarCarta()
@@ -68,6 +76,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private void OnTriggerExit2D(Collider2D other) {
         if(other.GetComponent<AvailableSpot>())
         {
+            inPosition = false;
             if(rectTransform.anchoredPosition == initialPosition && availableSpot is not null)
             {
                 availableSpot.HasTheCard = -1;

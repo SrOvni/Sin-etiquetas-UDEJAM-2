@@ -80,8 +80,10 @@ public class NPCDialogues : MonoBehaviour
     }
     public void PlayDialogueQuest()
     {
+        
         index = 0;
         dialogueBoxText.text = string.Empty;
+        dialogueInteractions.Movement.rb.velocity = new Vector3(0, 0, 0);
         dialogueInteractions.Movement.enabled = false;
         missionWasRejected = false;
         playerTakesDesicion = false;

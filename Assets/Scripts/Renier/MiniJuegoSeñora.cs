@@ -54,6 +54,9 @@ public class MiniJuegoSeñora : MonoBehaviour
     public bool AnimacionTermino{get{return aniamciónTutorialTemrino;}set{aniamciónTutorialTemrino = value;}}
     bool terminoTutorial;
     [SerializeField] bool playTutorial = false;
+
+    [SerializeField] UnityEvent OnGameStart;
+    [SerializeField] UnityEvent OnEndOfGame;
     private void Start() {
     }
     public void StartGame()
@@ -62,6 +65,7 @@ public class MiniJuegoSeñora : MonoBehaviour
             OnPlayerWin?.Invoke();
             return;
         }
+        OnGameStart?.Invoke();
         terminoTutorial = false;
         aniamciónTutorialTemrino = false;
         botonPDFpresionado = false;
@@ -119,6 +123,7 @@ public class MiniJuegoSeñora : MonoBehaviour
         StartCoroutine(WinOrLoseCanvas(win));
         yield return new WaitUntil(()=> canvasisoff);
         timer.RestarTimer();
+        OnEndOfGame?.Invoke();
         mainWindow.SetActive(false);
     }
     IEnumerator StartPopUpWindowGame()

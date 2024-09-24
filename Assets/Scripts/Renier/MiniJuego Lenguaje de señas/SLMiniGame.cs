@@ -31,6 +31,8 @@ public class SLMiniGame : MonoBehaviour
     [SerializeField] GameObject instructions;
     bool canvasTurnOff = false;
     [SerializeField] WinTheGame winTheGame;
+    [SerializeField] UnityEvent OnGameStart;
+    [SerializeField] UnityEvent OnGameEnd;
     bool entendioInstrucciones = false;
     public void EntendioInstrucciones()
     {
@@ -45,6 +47,7 @@ public class SLMiniGame : MonoBehaviour
     {
         if(!playerWin)
         {
+            OnGameStart?.Invoke();
             StartCoroutine(StartGame());
         }else{
             gameObject.SetActive(false);
@@ -106,6 +109,7 @@ IEnumerator EndGame()
     StartCoroutine(ReordenarCartas(secondsForCardToReorder));
     yield return new WaitUntil(()=>cartasOrdenadas);
     yield return new WaitUntil(()=> canvasTurnOff);
+    OnGameEnd?.Invoke();
     movement.CantMovePlayer();
     gameObject.SetActive(false);
 }
