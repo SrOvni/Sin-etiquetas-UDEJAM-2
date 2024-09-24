@@ -28,7 +28,7 @@ public class PopUpWindow : MonoBehaviour
     public IEnumerator StarPopUp()
     {
 
-        for(int i = 0; i < miniJuegoSeñora.NumberOfPopUps;i++)
+        for(int i = 0; i <= miniJuegoSeñora.NumberOfPopUps;i++)
         {
             gameObject.transform.DOScale(Random.Range(0.3f,0.8f),0);
             popUpWindowClickCount = 0;
